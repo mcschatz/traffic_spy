@@ -9,7 +9,6 @@ class CreateUserTest < Minitest::Test
 
   def test_it_creates_a_valid_user
     attributes = {user: {:root_url => "capybara.com", :identifier => "capn"}}
-    require 'pry'; binding.pry
     post '/sources', attributes
     assert_equal 1, User.count
     assert_equal 200, last_response.status
