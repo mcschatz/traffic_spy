@@ -1,0 +1,21 @@
+HOME (/)
+- Link to registration form
+- List of registered ID's linking to each ID's dashboard page
+
+REGISTRATION (/sources)
+- Form for registration information
+
+DASHBOARD (/sources/identifier)
+- Aggregated stats for all URLs
+- Links to each URL
+- Link to Events dashboard
+
+INDIVIDUAL ID URLS (/sources/identifier/urls/some/path)
+- Stats for each URL
+
+EVENTS DASHBOARD ()
+- Aggregated events info
+- Links to each recorded event
+
+INDIVIDUAL EVENTS
+- Stats for each event
