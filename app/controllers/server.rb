@@ -8,6 +8,14 @@ module TrafficSpy
       erb :sources
     end
 
+    post '/sources' do
+      user = User.new(params[:user])
+      if user.save
+        body 'User registered'
+      end
+      erb :sources
+    end
+
     not_found do
       erb :error
     end

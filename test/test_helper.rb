@@ -10,5 +10,4 @@ require 'database_cleaner'
 
 DatabaseCleaner.strategy = :truncation, {except: %w[public.schema_migrations]}
 
-
 Capybara.app = TrafficSpy::Server
