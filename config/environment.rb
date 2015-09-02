@@ -24,3 +24,6 @@ module TrafficSpy
     set :public_folder, File.join(TrafficSpy::Server.root, "app", "public")
   end
 end
+
+# require JSON
+require 'json'
