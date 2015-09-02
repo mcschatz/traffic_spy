@@ -1,0 +1,66 @@
+.form-inline{
+  display: inline;
+}
+
+body {
+  background-image: url("/images/robots_bg.jpg");
+  background-repeat: no-repeat;
+}
+
+h1 {
+    text-shadow: 2px 2px #ffffff;
+}
+
+select {
+  font-size: 25;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+.headshot img{
+  background-color: white;
+}
+
+.img-small img{
+  border-radius: 50%;
+  height: 100px;
+  background-color: white;
+}
+
+/*
+===----------===----------===----------===----------===----------===
+  Navigation
+===----------===----------===----------===----------===----------===
+*/
+
+.nav-buttons ul {
+  font: bold 15px "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 20px;
+  padding: 0px;
+  text-transform: uppercase;
+  text-align: right;
+}
+.nav-buttons li {
+  display: inline-block;
+}
+.nav-buttons a {
+  background: #395870;
+  background: linear-gradient(#6990Bf, #495F80);
+  border-right: 1px solid rgba(0, 0, 0, .3);
+  color: #fff;
+  padding: 12px 20px;
+  text-decoration: none;
+}
+.nav-buttons a:hover {
+  background: #516B90;
+  box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, .3);
+}
+.nav-buttons li:first-child a {
+  border-radius: 4px 0 0 4px;
+}
+.nav-buttons li:last-child a {
+  border-right: 0;
+  border-radius: 0 4px 4px 0;
+}
