@@ -11,9 +11,13 @@ module TrafficSpy
     post '/sources' do
       user = User.new(params[:user])
       if user.save
-        body 'User registered'
+        id_hash = {identifier: user.identifier}
+        body "#{id_hash.to_json}"
+      else
+        body user.errors.full_messages
+        status 400
       end
-      erb :sources
+
     end
 
     not_found do
