@@ -23,33 +23,38 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do |identifier|
-      payload = JSON.parse(params[:payload])
-      url = payload["url"]
-      requested_at = payload["requestedAt"]
-      responded_in = payload["respondedIn"].to_i
-      referred_by = payload["referredBy"]
-      request_type = payload["requestType"]
-      parameters = payload["parameters"]
-      event_name = payload["eventName"]
-      os = UserAgent.parse(payload["userAgent"]).platform
-      browser = UserAgent.parse(payload["userAgent"]).browser
-      resolution_width = payload["resolutionWidth"]
+      user = User.find_by_identifier(identifier)
+
+      payload           = JSON.parse(params[:payload])
+
+      url               = payload["url"]
+      requested_at      = payload["requestedAt"]
+      responded_in      = payload["respondedIn"].to_i
+      referred_by       = payload["referredBy"]
+      request_type      = payload["requestType"]
+      parameters        = payload["parameters"]
+      event_name        = payload["eventName"]
+      os                = UserAgent.parse(payload["userAgent"]).platform
+      browser           = UserAgent.parse(payload["userAgent"]).browser
+      resolution_width  = payload["resolutionWidth"]
       resolution_height = payload["resolutionHeight"]
-      ip = payload["ip"]
-      request = Request.new({ :url => url,
-                      :requested_at => requested_at,
-                      :responded_in => responded_in,
-                      :referred_by => referred_by,
-                      :request_type => request_type,
-                      :parameters => parameters,
-                      :event_name => event_name,
-                      :os => os,
-                      :browser => browser,
-                      :resolution_width => resolution_width,
-                      :resolution_height => resolution_height,
-                      :ip => ip })
-      require 'pry'; binding.pry
-      request.save
+      ip                = payload["ip"]
+      sha               = Digest::SHA1.hexdigest(params[:payload])
+
+      request = Request.new({ :url               => url,
+                              :requested_at      => requested_at,
+                              :responded_in      => responded_in,
+                              :referred_by       => referred_by,
+                              :request_type      => request_type,
+                              :parameters        => parameters,
+                              :event_name        => event_name,
+                              :os                => os,
+                              :browser           => browser,
+                              :resolution_width  => resolution_width,
+                              :resolution_height => resolution_height,
+                              :ip                => ip })
+
+      user.requests << request
     end
 
     not_found do
