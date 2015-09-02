@@ -22,14 +22,35 @@ module TrafficSpy
       end
     end
 
-    # post '/sources/:identifier/data' do |identifier|
-    #   payload = params[:request]
-    #   payload = JSON.parse(params[:request])
-    #
-    #
-    # end
-
-
+    post '/sources/:identifier/data' do |identifier|
+      payload = JSON.parse(params[:payload])
+      url = payload["url"]
+      requested_at = payload["requestedAt"]
+      responded_in = payload["respondedIn"].to_i
+      referred_by = payload["referredBy"]
+      request_type = payload["requestType"]
+      parameters = payload["parameters"]
+      event_name = payload["eventName"]
+      os = UserAgent.parse(payload["userAgent"]).platform
+      browser = UserAgent.parse(payload["userAgent"]).browser
+      resolution_width = payload["resolutionWidth"]
+      resolution_height = payload["resolutionHeight"]
+      ip = payload["ip"]
+      request = Request.new({ :url => url,
+                      :requested_at => requested_at,
+                      :responded_in => responded_in,
+                      :referred_by => referred_by,
+                      :request_type => request_type,
+                      :parameters => parameters,
+                      :event_name => event_name,
+                      :os => os,
+                      :browser => browser,
+                      :resolution_width => resolution_width,
+                      :resolution_height => resolution_height,
+                      :ip => ip })
+      require 'pry'; binding.pry
+      request.save
+    end
 
     not_found do
       erb :error

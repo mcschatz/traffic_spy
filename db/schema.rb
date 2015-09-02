@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20150902164513) do
   enable_extension "plpgsql"
 
   create_table "requests", force: :cascade do |t|
+    t.integer  "user_id"
     t.text     "url"
     t.datetime "requested_at"
     t.integer  "responded_in"
