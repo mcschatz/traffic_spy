@@ -13,12 +13,18 @@ module TrafficSpy
       if user.save
         id_hash = {identifier: user.identifier}
         body "#{id_hash.to_json}"
-      else
+      elsif user.identifier == nil || user.root_url == nil
         body user.errors.full_messages
         status 400
+      else
+        body user.errors.full_messages
+        status 403
       end
-
     end
+
+    # post '/sources/:identifier/data' do |identifier|
+
+
 
     not_found do
       erb :error

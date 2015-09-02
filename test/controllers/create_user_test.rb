@@ -31,6 +31,16 @@ class CreateUserTest < Minitest::Test
     assert_equal "Root url can't be blank", last_response.body
   end
 
+  def test_duplicate_identifier_returns_403_error
+    attributes1 = {user: {:identifier=> "capybara", :root_url=> "munchies.com"}}
+    attributes2 = {user: {:identifier=> "capybara", :root_url=> "eat.com"}}
+    post '/sources', attributes1
+    post '/sources', attributes2
+    assert_equal 1, User.count
+    assert_equal 403, last_response.status
+    assert_equal "Identifier has already been taken", last_response.body
+  end
+
   def setup
     DatabaseCleaner.start
   end
