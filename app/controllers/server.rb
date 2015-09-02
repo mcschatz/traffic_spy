@@ -9,7 +9,7 @@ module TrafficSpy
     end
 
     post '/sources' do
-      user = User.new({:root_url => params[:user][:rootUrl], :identifier => params[:user][:identifier]})
+      user = User.new({:root_url => params[:rootUrl], :identifier => params[:identifier]})
       if user.save
         id_hash = {identifier: user.identifier}
         body "#{id_hash.to_json}"
