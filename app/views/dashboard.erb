@@ -1,0 +1,7 @@
+<ol>
+  <% @urls.each do |url| %>
+    <li><%= url[1].first + " - " + url[0].to_s %></a></li>
+  <%end%>
+</ol>
+
+<!-- create a sorted url array, and it knows its path -->

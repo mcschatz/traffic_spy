@@ -48,6 +48,14 @@ module TrafficSpy
       end
     end
 
+    get '/sources/:identifier' do |identifier|
+      user = User.find_by_identifier(identifier)
+      addresses = user.urls.map { |url| url.address }
+      group = addresses.group_by { |address| addresses.count(address) }
+      @urls = group.sort_by { |count, address| count }.reverse
+      erb :dashboard
+    end
+
     not_found do
       erb :error
     end
