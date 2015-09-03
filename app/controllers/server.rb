@@ -26,7 +26,6 @@ module TrafficSpy
       if params[:payload]
         user = User.find_by_identifier(identifier)
         root_url = User.find_by_identifier(identifier).root_url
-
         payload           = JSON.parse(params[:payload])
 
         url               = payload["url"]
@@ -43,19 +42,24 @@ module TrafficSpy
         ip                = payload["ip"]
         sha               = Digest::SHA1.hexdigest(params[:payload])
 
-        request = Request.new({ :url               => url,
-                                :requested_at      => requested_at,
-                                :responded_in      => responded_in,
-                                :referred_by       => referred_by,
-                                :request_type      => request_type,
-                                :parameters        => parameters,
-                                :event_name        => event_name,
-                                :os                => os,
-                                :browser           => browser,
-                                :resolution_width  => resolution_width,
-                                :resolution_height => resolution_height,
-                                :ip                => ip })
+        machine = Machine.create({:os                => os,
+                                   :browser           => browser,
+                                   :resolution_width  => resolution_width,
+                                   :resolution_height => resolution_height,
+                                   :ip                => ip})
 
+        site = Site.create({:url               => url,
+                            :requested_at      => requested_at,
+                            :responded_in      => responded_in,
+                            :referred_by       => referred_by,
+                            :request_type      => request_type,
+                            :parameters        => parameters,
+                            :event_name        => event_name})
+
+        request = Request.new({ :sha => sha})
+
+        machine.requests << request
+        site.requests << request
         user.requests << request
 
         if request.errors.full_messages != []
