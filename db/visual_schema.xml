@@ -32,6 +32,25 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="user" row="id" />
 </row>
+<row name="site_id" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default><relation table="site" row="id" />
+</row>
+<row name="visitor_id" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default><relation table="visitor" row="id" />
+</row>
+<row name="sha" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="741" y="223" name="site">
+<row name="id" null="1" autoincrement="1">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
 <row name="url" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
@@ -51,6 +70,14 @@
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <row name="event_name" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="285" y="324" name="visitor">
+<row name="id" null="1" autoincrement="1">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <row name="os" null="1" autoincrement="0">
