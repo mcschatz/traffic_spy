@@ -1,6 +1,5 @@
 class Request < ActiveRecord::Base
   belongs_to :user
+  belongs_to :url
   validates :sha, uniqueness: true
-  belongs_to :machine
-  belongs_to :site
 end

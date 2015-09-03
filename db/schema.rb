@@ -11,34 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903155412) do
+ActiveRecord::Schema.define(version: 20150903193634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "machines", force: :cascade do |t|
-    t.text "browser"
-    t.text "os"
-    t.text "resolution_width"
-    t.text "resolution_height"
-    t.text "ip"
-  end
-
   create_table "requests", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "url_id"
     t.text    "sha"
-    t.integer "machine_id"
-    t.integer "site_id"
   end
 
-  create_table "sites", force: :cascade do |t|
-    t.text     "url"
-    t.datetime "requested_at"
-    t.integer  "responded_in"
-    t.text     "referred_by"
-    t.text     "request_type"
-    t.text     "parameters"
-    t.text     "event_name"
+  create_table "urls", force: :cascade do |t|
+    t.text "address"
   end
 
   create_table "users", force: :cascade do |t|

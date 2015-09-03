@@ -14,8 +14,7 @@ class ProcessRequestsTest < Minitest::Test
     post "/sources/#{identifier}/data", attributes
 
     assert_equal 1, Request.last.user_id
-    assert_equal "Chrome", Machine.last.browser
-    assert_equal "clarence.ninja/blog", Site.last.url
+    assert_equal "clarence.ninja/blog", Url.last.address
     assert_equal 200, last_response.status
   end
 

@@ -26,3 +26,48 @@ rake db:test:prepare
 Run yourself on a fresh computer
 rake db:create
 rake db:migrate
+
+
+
+request_type = RequestType.where(verb: payload[:requestType]).first_or_create
+request_type = RequestType.find_or_create_by(verb: payload[:requestType]) #=> <RequestType id: 1, verb: "GET">
+request_type.verb #=> "GET"
+
+Request.create(request_type_id: request_type.id) #=> assumes there is a request_type_id column
+Request.create(request_type: request_type) #=> Request model belongs_to :request_type
+
+user = User.find_by(identifier: params[:identifier])
+user.requests.create(request_type: request_type) #=> automatically assigns :user_id
+
+
+
+
+
+antiquated
+--------------
+requested_at      = payload["requestedAt"]
+responded_in      = payload["respondedIn"].to_i
+referred_by       = payload["referredBy"]
+request_type      = payload["requestType"]
+event_name        = payload["eventName"]
+operating_system  = UserAgent.parse(payload["userAgent"]).platform
+browser           = UserAgent.parse(payload["userAgent"]).browser
+resolution        = payload["resolutionWidth"] + "x" + payload["resolutionHeight"]
+ip                = payload["ip"]
+
+machine = Machine.new({:os                => os,
+                       :browser           => browser,
+                       :resolution_width  => resolution_width,
+                       :resolution_height => resolution_height,
+                       :ip                => ip})
+
+site = Site.new({:url               => url,
+                :requested_at      => requested_at,
+                :responded_in      => responded_in,
+                :referred_by       => referred_by,
+                :request_type      => request_type,
+                :parameters        => parameters,
+                :event_name        => event_name})
+
+machine.requests << request
+site.requests << request
