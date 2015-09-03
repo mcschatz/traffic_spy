@@ -9,7 +9,7 @@ class ProcessRequestsTest < Minitest::Test
 
   def test_it_stores_a_payload
     user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
-    attributes = {:payload => '{"url":"clarence.ninja/blog","requestedAt":"2013-02-16 21:38:28 -0700","respondedIn":37,"referredBy":"http://jumpstartlab.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1920","resolutionHeight":"1280","ip":"63.29.38.211"}'}
+    attributes = {:payload => '{"url":"clarence.ninja/blog"}'}
     identifier = user.identifier
     post "/sources/#{identifier}/data", attributes
 
@@ -30,8 +30,8 @@ class ProcessRequestsTest < Minitest::Test
 
   def test_it_returns_a_403_forbidden_if_payload_already_exists
     user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
-    attributes1 = {:payload => '{"url":"clarence.ninja/blog","requestedAt":"2013-02-16 21:38:28 -0700","respondedIn":37,"referredBy":"http://jumpstartlab.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1920","resolutionHeight":"1280","ip":"63.29.38.211"}'}
-    attributes2 = {:payload => '{"url":"clarence.ninja/about","requestedAt":"2013-02-16 21:38:28 -0700","respondedIn":37,"referredBy":"http://jumpstartlab.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1920","resolutionHeight":"1280","ip":"63.29.38.211"}'}
+    attributes1 = {:payload => '{"url":"clarence.ninja/blog"}'}
+    attributes2 = {:payload => '{"url":"clarence.ninja/about"}'}
 
     identifier = user.identifier
 
@@ -47,7 +47,7 @@ class ProcessRequestsTest < Minitest::Test
 
   def test_it_returns_a_403_forbidden_if_url_does_not_belong_to_the_given_user
     user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
-    attributes = {:payload => '{"url":"clarence.com/blog","requestedAt":"2013-02-16 21:38:28 -0700","respondedIn":37,"referredBy":"http://jumpstartlab.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1920","resolutionHeight":"1280","ip":"63.29.38.211"}'}
+    attributes = {:payload => '{"url":"clarence.com/blog"}'}
     identifier = user.identifier
 
     post "/sources/#{identifier}/data", attributes

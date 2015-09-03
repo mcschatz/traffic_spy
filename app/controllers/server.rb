@@ -41,17 +41,12 @@ module TrafficSpy
           body "This application is not registered to this user."
           status 403
         else
-          url = Url.create({:address => address})
           user.requests << request
+          url = Url.create({:address => address})
           url.requests << request
         end
       end
     end
-
-
-
-
-
 
     not_found do
       erb :error
