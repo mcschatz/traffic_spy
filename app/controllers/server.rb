@@ -89,6 +89,7 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do |identifier|
+    ### if identifier doesn't exist, display useful message on site, else do this...
       @user = User.find_by_identifier(identifier)
 
       @urls_info = breakdown(@user.urls, :address)
@@ -98,6 +99,11 @@ module TrafficSpy
       @sorted_ave_response_times = sorted_ave_response_times_by_url(@user.urls.uniq)
 
       erb :dashboard
+    end
+
+    get '/sources/:identifier/urls/*' do |identifier, path|
+      @path = path
+      erb :url_stats
     end
 
     not_found do
