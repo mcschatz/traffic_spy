@@ -1,3 +1,5 @@
+require_relative 'manipulate'
+
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
@@ -67,38 +69,21 @@ module TrafficSpy
       end
     end
 
-    def breakdown(collection, method)
-      total = collection.count
-      descriptions = collection.map {|table_object| table_object.send(method)}
-      group = descriptions.group_by {|description| descriptions.count(description)}
-      sorted_group = group.sort_by {|count, description| count}.reverse
-
-      # returns a sorted array of hashes with {:description, :count, :percent}
-      sorted_group.map do |count, description|
-        percent = (count.to_f/total * 100).round(2)
-        {description: description.first, count: count, percent: percent}
-      end
-    end
-
-    def sorted_ave_response_times_by_url(urls)
-    	response_times = urls.map do |url|
-        {:address => url.address,
-         :ave_response_time => url.requests.average(:response_time).to_f.round(2)}
-      end
-      response_times.sort_by{|data| data[:ave_response_time]}.reverse
-    end
-
     get '/sources/:identifier' do |identifier|
-    ### if identifier doesn't exist, display useful message on site, else do this...
       @user = User.find_by_identifier(identifier)
 
-      @urls_info = breakdown(@user.urls, :address)
-      @browsers_info = breakdown(@user.browsers, :name)
-      @os_info = breakdown(@user.operating_systems, :name)
-      @resolution_info = breakdown(@user.resolutions, :description)
-      @sorted_ave_response_times = sorted_ave_response_times_by_url(@user.urls.uniq)
+      if @user
+        @urls_info = Manipulate.breakdown(@user.urls, :address)
+        @browsers_info = Manipulate.breakdown(@user.browsers, :name)
+        @os_info = Manipulate.breakdown(@user.operating_systems, :name)
+        @resolution_info = Manipulate.breakdown(@user.resolutions, :description)
+        @sorted_ave_response_times = Manipulate.sorted_ave_response_times_by_url(@user.urls.uniq)
 
-      erb :dashboard
+        erb :dashboard
+      else
+        @message = "The requested user, #{identifier}, is not registered."
+        erb :error
+      end
     end
 
     get '/sources/:identifier/urls/*' do |identifier, path|
