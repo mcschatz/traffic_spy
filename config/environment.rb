@@ -25,5 +25,6 @@ module TrafficSpy
   end
 end
 
-# require JSON
+# requires
 require 'json'
+require 'uri'

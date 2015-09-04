@@ -1,2 +1,12 @@
-<h1>Hello, Traffic Spyer</h1>
-<a href='/sources' class='btn btn-primary'>Register Here</a>
+<section class = "col-md-6">
+  <h1>Hello, Traffic Spyer</h1>
+  <a href='/sources' class='btn btn-primary'>Register Here</a>
+</section>
+<section class = "col-md-6">
+  <h1>Check out other users' stats!</h1>
+  <ul>
+    <% @users.each do |user| %>
+    <%= "<li><a href='/sources/#{user.identifier}'><h2>#{user.identifier}</h2></a></li>" %>
+    <% end %>
+  </ul>
+</section>
