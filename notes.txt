@@ -71,3 +71,6 @@ site = Site.new({:url               => url,
 
 machine.requests << request
 site.requests << request
+
+curl -i -d 'payload={"url":"http://apple.com/blog","requestedAt":"2014-02-16 22:38:28 -0700","respondedIn":105,"referredBy":"http://apple.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"640","resolutionHeight":"480","ip":"63.29.38.212"}' http://localhost:9393/sources/apple/data
+

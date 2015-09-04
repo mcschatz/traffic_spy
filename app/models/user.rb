@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
   validates :root_url, presence: true
   has_many :requests
   has_many :urls, :through => :requests
-
-  def ordered_urls
-    user.urls
-  end
+  has_many :browsers, :through => :requests
+  has_many :operating_systems, :through => :requests
 end

@@ -3,6 +3,8 @@ class CreateRequestsTable < ActiveRecord::Migration
     create_table :requests do |t|
       t.integer   :user_id
       t.integer   :url_id
+      t.integer   :browser_id
+      t.integer   :operating_system_id
       t.text      :sha
     end
   end
