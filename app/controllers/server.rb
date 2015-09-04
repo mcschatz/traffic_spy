@@ -77,7 +77,7 @@ module TrafficSpy
         @browsers_info = Manipulate.breakdown(@user.browsers, :name)
         @os_info = Manipulate.breakdown(@user.operating_systems, :name)
         @resolution_info = Manipulate.breakdown(@user.resolutions, :description)
-        @sorted_ave_response_times = Manipulate.sorted_ave_response_times_by_url(@user.urls.uniq)
+        @sorted_avg_response_times = Manipulate.sorted_avg_response_times_by_url(@user.urls.uniq)
 
         erb :dashboard
       else
@@ -87,8 +87,15 @@ module TrafficSpy
     end
 
     get '/sources/:identifier/urls/*' do |identifier, path|
-      # @path = path
+      @path = path
+      address = User.find_by_identifier(identifier).root_url + "/#{path}"
+      url = Url.find_by_address(address)
+      @requests = url.requests
       erb :url_stats
+    end
+
+    get '/sources/:identifier/events' do |identifier|
+      erb :events
     end
 
     not_found do

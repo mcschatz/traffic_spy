@@ -1,1 +1,3 @@
-stats will go here
+Longest Response Time: <%= @requests.maximum(:response_time).round(2).to_s + " ms"%><br>
+Shortest Response Time: <%= @requests.minimum(:response_time).round(2).to_s + " ms"%><br>
+Average Response Time: <%= @requests.average(:response_time).round(2).to_s + " ms"%>
