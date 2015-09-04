@@ -102,7 +102,7 @@ module TrafficSpy
     end
 
     get '/sources/:identifier/urls/*' do |identifier, path|
-      @path = path
+      # @path = path
       erb :url_stats
     end
 
