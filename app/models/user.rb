@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
   has_many :urls, :through => :requests
   has_many :browsers, :through => :requests
   has_many :operating_systems, :through => :requests
+  has_many :resolutions, :through => :requests
 end

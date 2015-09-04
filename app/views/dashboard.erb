@@ -1,16 +1,33 @@
+<h1 class='text-center'>=== <%= @user.identifier %> ===</h1>
+<hr>
+
+<h1>URLs:</h1>
 <ol>
-  <% @urls.each do |url| %>
-    <li><%= url[1].first + " - " + url[0].to_s %></a></li>
+  <% @urls_info.each do |url| %>
+    <li><%= "#{url[:description]}... #{url[:count]} requests... #{url[:percent]}%" %></a></li>
   <%end%>
 </ol>
-<br>
-<br>
-<br>
-<br>
+<h1>Browsers:</h1>
 <ol>
-  <% @browsers.each do |browser| %>
-    <li> <%= browser %> </li>
-    <%end%>
+  <% @browsers_info.each do |browser| %>
+  <li><%= "#{browser[:description]}... #{browser[:count]} requests... #{browser[:percent]}%" %></a></li>
+  <%end%>
 </ol>
-
-<!-- create a sorted url array, and it knows its path -->
+<h1>Operating Systems:</h1>
+<ol>
+  <% @os_info.each do |os| %>
+  <li><%= "#{os[:description]}... #{os[:count]} requests... #{os[:percent]}%" %></a></li>
+  <%end%>
+</ol>
+<h1>Resolutions:</h1>
+<ol>
+  <% @resolution_info.each do |resolution| %>
+  <li><%= "#{resolution[:description]}... #{resolution[:count]} requests... #{resolution[:percent]}%" %></a></li>
+  <%end%>
+</ol>
+<h1>Response Times:</h1>
+<ol>
+  <% @sorted_ave_response_times.each do |response_time| %>
+    <li><%= "#{response_time[:address]}: #{response_time[:ave_response_time]} milliseconds" %></a></li>
+  <%end%>
+</ol>

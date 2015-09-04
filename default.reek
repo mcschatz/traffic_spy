@@ -12,7 +12,7 @@ Duplication:
   enabled: false
 ClassVariable:
   enabled: false
-ControlCouple: 
+ControlCouple:
   enabled: false
 DataClump:
   enabled: false

@@ -5,6 +5,8 @@ class CreateRequestsTable < ActiveRecord::Migration
       t.integer   :url_id
       t.integer   :browser_id
       t.integer   :operating_system_id
+      t.integer   :resolution_id
+      t.integer   :response_time
       t.text      :sha
     end
   end
