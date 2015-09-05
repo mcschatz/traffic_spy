@@ -5,5 +5,7 @@ class Request < ActiveRecord::Base
   belongs_to :operating_system
   belongs_to :resolution
   belongs_to :type
-  validates :sha, uniqueness: true
+  belongs_to :referral
+  belongs_to :event
+  validates  :sha, uniqueness: true
 end

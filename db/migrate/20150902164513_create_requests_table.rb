@@ -7,6 +7,8 @@ class CreateRequestsTable < ActiveRecord::Migration
       t.integer   :operating_system_id
       t.integer   :resolution_id
       t.integer   :type_id
+      t.integer   :referral_id
+      t.integer   :event_id
       t.integer   :response_time
       t.text      :sha
     end

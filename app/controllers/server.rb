@@ -67,6 +67,12 @@ module TrafficSpy
           type = Type.find_or_create_by({:name => payload["requestType"]})
           type.requests << request
 
+          referral = Referral.find_or_create_by(:address => payload["referredBy"])
+          referral.requests << request
+
+          event = Event.find_or_create_by(:name => payload["eventName"])
+          event.requests << request
+
           body "Success!\n"
         end
       end
@@ -104,7 +110,15 @@ module TrafficSpy
     end
 
     get '/sources/:identifier/events' do |identifier|
-      erb :events
+      @user = User.find_by_identifier(identifier)
+      @events = @user.events
+
+      if @events != []
+        erb :events
+      else
+        @message = "There are no events for this user."
+        erb :error
+      end
     end
 
     not_found do
