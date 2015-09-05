@@ -87,12 +87,17 @@ module TrafficSpy
     end
 
     get '/sources/:identifier/urls/*' do |identifier, path|
-      @identifier = identifier
-      @path = path
       address = User.find_by_identifier(identifier).root_url + "/#{path}"
       @url = Url.find_by_address(address)
+      if @url
+        @identifier = identifier
+        @path = path
 
-      erb :url_stats
+        erb :url_stats
+      else
+        @message = "The URL, #{address}, has had zero requests."
+        erb :error
+      end
     end
 
     get '/sources/:identifier/events' do |identifier|
