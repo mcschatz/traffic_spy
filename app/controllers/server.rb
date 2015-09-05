@@ -87,10 +87,11 @@ module TrafficSpy
     end
 
     get '/sources/:identifier/urls/*' do |identifier, path|
+      @identifier = identifier
       @path = path
       address = User.find_by_identifier(identifier).root_url + "/#{path}"
-      url = Url.find_by_address(address)
-      @requests = url.requests
+      @url = Url.find_by_address(address)
+
       erb :url_stats
     end
 
