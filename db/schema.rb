@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150905191230) do
     t.integer "browser_id"
     t.integer "operating_system_id"
     t.integer "resolution_id"
+    t.integer "type_id"
     t.integer "response_time"
     t.text    "sha"
   end

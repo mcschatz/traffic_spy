@@ -36,7 +36,7 @@ module TrafficSpy
 
         user             = User.find_by_identifier(identifier)
         root_url         = User.find_by_identifier(identifier).root_url
-        address = payload["url"]
+        address          = payload["url"]
 
         request = Request.create({:sha => sha,
                                   :response_time => response_time})
@@ -63,6 +63,9 @@ module TrafficSpy
           resolution = "#{payload['resolutionWidth']} x #{payload['resolutionHeight']}"
           resolution = Resolution.find_or_create_by({:description => resolution})
           resolution.requests << request
+
+          type = Type.find_or_create_by({:name => payload["requestType"]})
+          type.requests << request
 
           body "Success!\n"
         end
