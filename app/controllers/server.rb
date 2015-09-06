@@ -26,23 +26,9 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do |identifier|
-      if !params[:payload]
-        body "Missing the payload\n"
-        status 400
-      else
-        request  = Payload.new.parse(params[:payload], identifier)
-        root_url = User.find_by_identifier(identifier).root_url
-
-        if request.errors.full_messages != []
-          body "This request has already been recorded.\n"
-          status 403
-        elsif !request.url.address.include?(root_url)
-          body "This application is not registered to this user.\n"
-          status 403
-        else
-          body "Success!\n"
-        end
-      end
+      request  = Payload.new(identifier, params[:payload])
+      status request.status
+      body   request.body
     end
 
     get '/sources/:identifier' do |identifier|
@@ -65,6 +51,7 @@ module TrafficSpy
     get '/sources/:identifier/urls/:path' do |identifier, path|
       address = User.find_by_identifier(identifier).root_url + "/#{path}"
       @url = Url.find_by_address(address)
+
       if @url
         @identifier = identifier
         @path = path

@@ -1,18 +1,31 @@
 class Payload
-  attr_reader :request
+  attr_reader :request,
+              :status,
+              :body
 
-  def initialize
+  def initialize(identifier, params = false)
     @request  = Request.new
+    @user     = User.find_by_identifier(identifier)
+    valid?(identifier, params)
+  end
+
+  def valid?(identifier, params)
+    if !params
+      @body   = "Missing the payload\n"
+      @status = 400
+    else
+      parse(params, identifier)
+    end
   end
 
   def parse(params, identifier)
     payload  = JSON.parse(params)
 
+    request.user          = @user if @user
     request.sha           = sha(params)
     request.requested_at  = requested_at(payload)
     request.response_time = response_time(payload)
 
-    user(identifier)
     url(payload)
     browser(payload)
     operating_system(payload)
@@ -22,8 +35,7 @@ class Payload
     browser(payload)
     resolution(payload)
 
-
-    @request
+    response(request)
   end
 
   def sha(params)
@@ -36,11 +48,6 @@ class Payload
 
   def response_time(payload)
     payload["respondedIn"].to_i
-  end
-
-  def user(identifier)
-   user = User.find_by_identifier(identifier)
-   user.requests << request
   end
 
   def url(payload)
@@ -79,5 +86,18 @@ class Payload
   def event(payload)
     event = Event.find_or_create_by(:name => payload["eventName"])
     event.requests << request
+  end
+
+  def response(request)
+    if request.save
+      @body   = "Success!\n"
+      @status = 200
+    elsif !@user
+      @body   = "This application is not registered to this user.\n"
+      @status = 403
+    else
+      @body   = "This request already exists.\n"
+      @status = 403
+    end
   end
 end

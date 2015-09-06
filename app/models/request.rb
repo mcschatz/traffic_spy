@@ -8,4 +8,5 @@ class Request < ActiveRecord::Base
   belongs_to :referral
   belongs_to :event
   validates  :sha, uniqueness: true
+  validates  :user_id, presence: true
 end
