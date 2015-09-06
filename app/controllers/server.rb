@@ -30,49 +30,16 @@ module TrafficSpy
         body "Missing the payload\n"
         status 400
       else
-        sha      = Digest::SHA1.hexdigest(params[:payload])
-        payload  = JSON.parse(params[:payload])
-
-        user     = User.find_by_identifier(identifier)
+        request  = Payload.new.parse(params[:payload], identifier)
         root_url = User.find_by_identifier(identifier).root_url
-        address  = payload["url"]
 
-        request = Request.create({:sha => sha,
-                                  :response_time => payload["respondedIn"].to_i,
-                                  :requested_at => payload["requestedAt"]})
         if request.errors.full_messages != []
           body "This request has already been recorded.\n"
           status 403
-        elsif !address.include?(root_url)
+        elsif !request.url.address.include?(root_url)
           body "This application is not registered to this user.\n"
           status 403
         else
-          user.requests << request
-
-          url = Url.find_or_create_by({:address => address})
-          url.requests << request
-
-          browser = UserAgent.parse(payload["userAgent"]).browser
-          browser = Browser.find_or_create_by({:name => browser})
-          browser.requests << request
-
-          operating_system = UserAgent.parse(payload["userAgent"]).platform
-          operating_system = OperatingSystem.find_or_create_by({:name => operating_system})
-          operating_system.requests << request
-
-          resolution = "#{payload['resolutionWidth']} x #{payload['resolutionHeight']}"
-          resolution = Resolution.find_or_create_by({:description => resolution})
-          resolution.requests << request
-
-          type = Type.find_or_create_by({:name => payload["requestType"]})
-          type.requests << request
-
-          referral = Referral.find_or_create_by(:address => payload["referredBy"])
-          referral.requests << request
-
-          event = Event.find_or_create_by(:name => payload["eventName"])
-          event.requests << request
-
           body "Success!\n"
         end
       end
