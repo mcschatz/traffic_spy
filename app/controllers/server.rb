@@ -30,16 +30,16 @@ module TrafficSpy
         body "Missing the payload\n"
         status 400
       else
-        sha              = Digest::SHA1.hexdigest(params[:payload])
-        payload = JSON.parse(params[:payload])
-        response_time    = payload["respondedIn"].to_i
+        sha      = Digest::SHA1.hexdigest(params[:payload])
+        payload  = JSON.parse(params[:payload])
 
-        user             = User.find_by_identifier(identifier)
-        root_url         = User.find_by_identifier(identifier).root_url
-        address = payload["url"]
+        user     = User.find_by_identifier(identifier)
+        root_url = User.find_by_identifier(identifier).root_url
+        address  = payload["url"]
 
         request = Request.create({:sha => sha,
-                                  :response_time => response_time})
+                                  :response_time => payload["respondedIn"].to_i,
+                                  :requested_at => payload["requestedAt"]})
         if request.errors.full_messages != []
           body "This request has already been recorded.\n"
           status 403
@@ -64,6 +64,15 @@ module TrafficSpy
           resolution = Resolution.find_or_create_by({:description => resolution})
           resolution.requests << request
 
+          type = Type.find_or_create_by({:name => payload["requestType"]})
+          type.requests << request
+
+          referral = Referral.find_or_create_by(:address => payload["referredBy"])
+          referral.requests << request
+
+          event = Event.find_or_create_by(:name => payload["eventName"])
+          event.requests << request
+
           body "Success!\n"
         end
       end
@@ -77,7 +86,7 @@ module TrafficSpy
         @browsers_info = Manipulate.breakdown(@user.browsers, :name)
         @os_info = Manipulate.breakdown(@user.operating_systems, :name)
         @resolution_info = Manipulate.breakdown(@user.resolutions, :description)
-        @sorted_ave_response_times = Manipulate.sorted_ave_response_times_by_url(@user.urls.uniq)
+        @sorted_avg_response_times = Manipulate.sorted_avg_response_times_by_url(@user.urls.uniq)
 
         erb :dashboard
       else
@@ -86,9 +95,48 @@ module TrafficSpy
       end
     end
 
-    get '/sources/:identifier/urls/*' do |identifier, path|
-      # @path = path
-      erb :url_stats
+    get '/sources/:identifier/urls/:path' do |identifier, path|
+      address = User.find_by_identifier(identifier).root_url + "/#{path}"
+      @url = Url.find_by_address(address)
+      if @url
+        @identifier = identifier
+        @path = path
+
+        erb :url_stats
+      else
+        @message = "The URL, #{address}, has had zero requests."
+        erb :error
+      end
+    end
+
+    get '/sources/:identifier/events' do |identifier|
+      @user = User.find_by_identifier(identifier)
+      @events = @user.events
+
+      if @events != []
+        erb :events
+      else
+        @message = "There are no events for this user."
+        erb :error
+      end
+    end
+
+    get '/sources/:identifier/events/:event_name' do |identifier, event_name|
+      user = User.find_by_identifier(identifier)
+      @event = user.events.find_by_name(event_name)
+
+      if @event
+        event_requests = @event.requests
+        @requested = event_requests.group("date_part('hour', requested_at)").count
+        (0..23).each do |hour|
+          @requested[hour.to_f] ||= 0
+        end
+        erb :event_details
+      else
+        @message = "There are no requests from this event."
+        @link = {:address => "/sources/#{identifier}/events", :text => 'Back to Events Index'}
+        erb :error
+      end
     end
 
     not_found do

@@ -36,13 +36,13 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="urls" row="id" />
 </row>
-<row name="referred_by_id" null="0" autoincrement="0">
+<row name="referral_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="referred_bys" row="id" />
+<default>NULL</default><relation table="referrals" row="id" />
 </row>
-<row name="request_type_id" null="0" autoincrement="0">
+<row name="type_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="request_types" row="id" />
+<default>NULL</default><relation table="types" row="id" />
 </row>
 <row name="event_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -67,7 +67,7 @@
 <row name="requested_at" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
-<row name="responded_in" null="1" autoincrement="0">
+<row name="response_time" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="sha" null="1" autoincrement="0">
@@ -88,22 +88,22 @@
 <part>id</part>
 </key>
 </table>
-<table x="453" y="211" name="referred_bys">
+<table x="453" y="211" name="referrals">
 <row name="id" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="referred_by" null="1" autoincrement="0">
+<row name="address" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="452" y="295" name="request_types">
+<table x="452" y="295" name="types">
 <row name="id" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="request_type" null="1" autoincrement="0">
+<row name="name" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
@@ -114,7 +114,7 @@
 <row name="id" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="operating_system" null="1" autoincrement="0">
+<row name="name" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
@@ -125,7 +125,7 @@
 <row name="id" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="browser" null="1" autoincrement="0">
+<row name="name" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
@@ -136,7 +136,7 @@
 <row name="id" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="resolution" null="1" autoincrement="0">
+<row name="description" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">

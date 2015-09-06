@@ -13,7 +13,7 @@ class Manipulate
     end
   end
 
-  def self.sorted_ave_response_times_by_url(urls)
+  def self.sorted_avg_response_times_by_url(urls)
     response_times = urls.map do |url|
       {:address => url.address,
        :ave_response_time => url.requests.average(:response_time).to_f.round(2)}

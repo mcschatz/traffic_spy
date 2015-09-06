@@ -1,0 +1,4 @@
+<h1>Hourly Breakdown: <%= @event.name %> </h1>
+<% (0..23).each do |hour| %>
+  <%= (Time.now.at_beginning_of_day+hour.hours).strftime('%I:%M %p') + " - #{@requested[hour.to_f]}" %><br>
+<% end %>
