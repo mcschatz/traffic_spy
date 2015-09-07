@@ -38,22 +38,42 @@ class ProcessRequestsTest < Minitest::Test
     post "/sources/#{identifier}/data", attributes1
     post "/sources/#{identifier}/data", attributes1
     assert_equal 403, last_response.status
-    assert_equal "This request has already been recorded.\n", last_response.body
+    assert_equal "This request already exists.\n", last_response.body
     post "/sources/#{identifier}/data", attributes2
     assert_equal 200, last_response.status
     assert_equal 2, Request.count
-
   end
 
   def test_it_returns_a_403_forbidden_if_url_does_not_belong_to_the_given_user
     user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
-    attributes = {:payload => '{"url":"clarence.com/blog"}'}
-    identifier = user.identifier
+    attributes = {:payload => '{"url":"clarence.ninja"}'}
+    identifier = "bob"
 
     post "/sources/#{identifier}/data", attributes
-
     assert_equal 403, last_response.status
     assert_equal "This application is not registered to this user.\n", last_response.body
+  end
+
+  def test_it_does_not_add_data_to_the_url_table_when_a_request_is_not_valid
+    user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
+    attributes = {:payload => '{"url":"clarence.ninja"}'}
+    identifier  = user.identifier
+
+    post "/sources/#{identifier}/data", attributes
+    post "/sources/#{identifier}/data", attributes
+    assert_equal 1, Url.count
+    assert_equal "This request already exists.\n", last_response.body
+  end
+
+  def test_get_dashboard_info
+    user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
+    attributes = {:payload => '{"url":"clarence.ninja"}'}
+    identifier  = user.identifier
+
+    post "/sources/#{identifier}/data", attributes
+    get '/sources/clarence', attributes
+
+    assert_equal "blah", user.dashboard
   end
 
   def setup

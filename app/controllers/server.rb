@@ -26,68 +26,16 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do |identifier|
-      if !params[:payload]
-        body "Missing the payload\n"
-        status 400
-      else
-        sha      = Digest::SHA1.hexdigest(params[:payload])
-        payload  = JSON.parse(params[:payload])
-
-        user     = User.find_by_identifier(identifier)
-        root_url = User.find_by_identifier(identifier).root_url
-        address  = payload["url"]
-
-        request = Request.create({:sha => sha,
-                                  :response_time => payload["respondedIn"].to_i,
-                                  :requested_at => payload["requestedAt"]})
-        if request.errors.full_messages != []
-          body "This request has already been recorded.\n"
-          status 403
-        elsif !address.include?(root_url)
-          body "This application is not registered to this user.\n"
-          status 403
-        else
-          user.requests << request
-
-          url = Url.find_or_create_by({:address => address})
-          url.requests << request
-
-          browser = UserAgent.parse(payload["userAgent"]).browser
-          browser = Browser.find_or_create_by({:name => browser})
-          browser.requests << request
-
-          operating_system = UserAgent.parse(payload["userAgent"]).platform
-          operating_system = OperatingSystem.find_or_create_by({:name => operating_system})
-          operating_system.requests << request
-
-          resolution = "#{payload['resolutionWidth']} x #{payload['resolutionHeight']}"
-          resolution = Resolution.find_or_create_by({:description => resolution})
-          resolution.requests << request
-
-          type = Type.find_or_create_by({:name => payload["requestType"]})
-          type.requests << request
-
-          referral = Referral.find_or_create_by(:address => payload["referredBy"])
-          referral.requests << request
-
-          event = Event.find_or_create_by(:name => payload["eventName"])
-          event.requests << request
-
-          body "Success!\n"
-        end
-      end
+      request = Payload.new(identifier, params[:payload])
+      status request.status
+      body   request.body
     end
 
     get '/sources/:identifier' do |identifier|
       @user = User.find_by_identifier(identifier)
 
       if @user
-        @urls_info = Manipulate.breakdown(@user.urls, :address)
-        @browsers_info = Manipulate.breakdown(@user.browsers, :name)
-        @os_info = Manipulate.breakdown(@user.operating_systems, :name)
-        @resolution_info = Manipulate.breakdown(@user.resolutions, :description)
-        @sorted_avg_response_times = Manipulate.sorted_avg_response_times_by_url(@user.urls.uniq)
-
+        @user_info = User.new.dashboard(@user)
         erb :dashboard
       else
         @message = "The requested user, #{identifier}, is not registered."
@@ -98,6 +46,7 @@ module TrafficSpy
     get '/sources/:identifier/urls/:path' do |identifier, path|
       address = User.find_by_identifier(identifier).root_url + "/#{path}"
       @url = Url.find_by_address(address)
+
       if @url
         @identifier = identifier
         @path = path

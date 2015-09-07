@@ -5,7 +5,7 @@
   <section class='col-md-6'>
     <h1>URLs</h1>
     <ol>
-      <% @urls_info.each do |url| %>
+      <% @user_info.each do |url| %>
         <li><%= "<a href='/sources/#{@user.identifier}/urls#{URI(url[:description]).path}'>#{url[:description]}</a>... #{url[:count]} requests... #{url[:percent]}%" %></li>
       <%end%>
     </ol>
