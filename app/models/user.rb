@@ -51,10 +51,14 @@ class User < ActiveRecord::Base
 
   def find_events(user, event_name)
     event = user.events.find_by_name(event_name)
-    events = event.requests.group("date_part('hour', requested_at)").count
-    (0..23).each do |hour|
-      events[hour.to_f] ||= 0
+    if event
+      events = event.requests.group("date_part('hour', requested_at)").count
+      (0..23).each do |hour|
+        events[hour.to_f] ||= 0
+      end
+      events
+    else
+      false
     end
-    events
   end
 end
