@@ -10,17 +10,11 @@ module TrafficSpy
     end
 
     post '/sources' do
-      user = User.new({:root_url => params[:rootUrl], :identifier => params[:identifier]})
-      if user.save
-        id_hash = {identifier: user.identifier}
-        body "#{id_hash.to_json}"
-      elsif user.identifier == nil || user.root_url == nil
-        body user.errors.full_messages
-        status 400
-      else
-        body user.errors.full_messages
-        status 403
-      end
+      user   = User.new({:root_url => params[:rootUrl],
+                         :identifier => params[:identifier]})
+      user   = user.response(user)
+      status user[:status]
+      body   user[:body]
     end
 
     post '/sources/:identifier/data' do |identifier|
@@ -36,7 +30,7 @@ module TrafficSpy
         @user_info = User.new.dashboard(@user)
         erb :dashboard
       else
-        @message = "The requested user, #{identifier}, is not registered."
+        @message = "The requested user, #{identifier.capitalize}, is not registered."
         erb :error
       end
     end

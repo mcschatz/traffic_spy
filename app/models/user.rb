@@ -61,4 +61,30 @@ class User < ActiveRecord::Base
       false
     end
   end
+
+  def response(user)
+    params          = {}
+    params[:body]   = body(user)
+    params[:status] = status(user)
+    params
+  end
+
+  def body(user)
+    if user.save
+     id_hash = {identifier: user.identifier}
+      "#{id_hash.to_json}"
+    else
+      user.errors.full_messages
+    end
+  end
+
+  def status(user)
+    if user.save
+      200
+    elsif user.identifier == nil || user.root_url == nil
+      400
+    else
+      403
+    end
+  end
 end
