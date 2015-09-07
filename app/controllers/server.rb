@@ -1,5 +1,3 @@
-require_relative 'manipulate'
-
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
@@ -72,14 +70,9 @@ module TrafficSpy
 
     get '/sources/:identifier/events/:event_name' do |identifier, event_name|
       user = User.find_by_identifier(identifier)
-      @event = user.events.find_by_name(event_name)
+      @event = user.find_events(user, event_name)
 
       if @event
-        event_requests = @event.requests
-        @requested = event_requests.group("date_part('hour', requested_at)").count
-        (0..23).each do |hour|
-          @requested[hour.to_f] ||= 0
-        end
         erb :event_details
       else
         @message = "There are no requests from this event."
