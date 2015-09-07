@@ -42,7 +42,6 @@ module TrafficSpy
       if @url
         @identifier = identifier
         @path = path
-
         erb :url_stats
       else
         @message = "The URL, #{address}, has had zero requests."
