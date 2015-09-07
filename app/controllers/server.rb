@@ -1,5 +1,12 @@
 module TrafficSpy
   class Server < Sinatra::Base
+
+    helpers do
+      def hour_start(hour)
+      	(Time.now.at_beginning_of_day+hour.hours).strftime('%I:%M %p')
+      end
+    end
+
     get '/' do
       @users = User.all
       erb :index

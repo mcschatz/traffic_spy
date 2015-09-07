@@ -1,6 +1,6 @@
 <h1 class= "text-center"><%= @user.identifier.capitalize %> Events</h1>
 <ol>
   <% @events.group(:name).order('count_id DESC').count(:id).each do |event, count| %>
-  <li><%= "<a href='/sources/#{@user.identifier}/events/#{event}'> #{event} </a>- #{count}" %></li>
+    <li><%= "<a href='/sources/#{@user.identifier}/events/#{event}'> #{event} </a>- #{count}" %></li>
   <% end %>
 </ol>
