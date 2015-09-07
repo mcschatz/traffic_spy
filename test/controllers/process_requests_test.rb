@@ -65,17 +65,6 @@ class ProcessRequestsTest < Minitest::Test
     assert_equal "This request already exists.\n", last_response.body
   end
 
-  def test_get_dashboard_info
-    user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
-    attributes = {:payload => '{"url":"clarence.ninja"}'}
-    identifier  = user.identifier
-
-    post "/sources/#{identifier}/data", attributes
-    get '/sources/clarence', attributes
-
-    assert_equal "blah", user.dashboard
-  end
-
   def setup
     DatabaseCleaner.start
   end
