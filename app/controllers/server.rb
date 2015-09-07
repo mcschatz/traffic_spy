@@ -26,7 +26,7 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do |identifier|
-      request  = Payload.new(identifier, params[:payload])
+      request = Payload.new(identifier, params[:payload])
       status request.status
       body   request.body
     end
@@ -35,12 +35,7 @@ module TrafficSpy
       @user = User.find_by_identifier(identifier)
 
       if @user
-        @urls_info = Manipulate.breakdown(@user.urls, :address)
-        @browsers_info = Manipulate.breakdown(@user.browsers, :name)
-        @os_info = Manipulate.breakdown(@user.operating_systems, :name)
-        @resolution_info = Manipulate.breakdown(@user.resolutions, :description)
-        @sorted_avg_response_times = Manipulate.sorted_avg_response_times_by_url(@user.urls.uniq)
-
+        @user_info = User.new.dashboard(@user)
         erb :dashboard
       else
         @message = "The requested user, #{identifier}, is not registered."
