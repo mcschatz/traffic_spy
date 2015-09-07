@@ -43,6 +43,16 @@ class UserCanSeeDashboardTest < FeatureTest
     assert page.has_content?("tubbin")
   end
 
+  def test_user_can_see_event_specific_details
+    visit '/'
+    click_link("clarence")
+    click_on("Events")
+    click_link("tubbin")
+    assert_equal "/sources/clarence/events/tubbin", current_path
+    assert page.has_content("tubbin")
+    assert page.has_content("9:00 PM - 1")
+  end
+
   def setup
     DatabaseCleaner.start
 

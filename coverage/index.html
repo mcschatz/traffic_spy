@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-09-06T17:13:59-06:00">2015-09-06T17:13:59-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-09-06T18:36:13-06:00">2015-09-06T18:36:13-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">62.82%</span></span>
+    (<span class="covered_percent"><span class="red">56.13%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.1
+         1.09
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>13</b> files in total.
-    <b>156</b> relevant lines. 
-    <span class="green"><b>98</b> lines covered</span> and
-    <span class="red"><b>58</b> lines missed </span>
+    <b>14</b> files in total.
+    <b>212</b> relevant lines. 
+    <span class="green"><b>119</b> lines covered</span> and
+    <span class="red"><b>93</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,22 +52,22 @@
       
       <tr>
         <td class="strong"><a href="#fa30f3dc52e930799bf8d011fff0feb21f5b0cb7" class="src_link" title="app/controllers/manipulate.rb">app/controllers/manipulate.rb</a></td>
-        <td class="green strong">100.0 %</td>
+        <td class="red strong">33.33 %</td>
         <td>17</td>
         <td>9</td>
-        <td>9</td>
-        <td>0</td>
-        <td>5.7</td>
+        <td>3</td>
+        <td>6</td>
+        <td>0.3</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#9ae1f3578d327eca3e39c18edf03be9be69b92c0" class="src_link" title="app/controllers/server.rb">app/controllers/server.rb</a></td>
-        <td class="red strong">36.96 %</td>
-        <td>146</td>
-        <td>92</td>
-        <td>34</td>
+        <td class="red strong">34.48 %</td>
+        <td>95</td>
         <td>58</td>
-        <td>0.6</td>
+        <td>20</td>
+        <td>38</td>
+        <td>0.7</td>
       </tr>
       
       <tr>
@@ -101,6 +101,16 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#cf2fdd3fb5631e1a19ba30f30c82f82d7c6838e5" class="src_link" title="app/models/payload.rb">app/models/payload.rb</a></td>
+        <td class="red strong">24.62 %</td>
+        <td>103</td>
+        <td>65</td>
+        <td>16</td>
+        <td>49</td>
+        <td>0.2</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#eea8b7968a2585b13ac3a3760c970fb038fa6b1a" class="src_link" title="app/models/referral.rb">app/models/referral.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>3</td>
@@ -113,9 +123,9 @@
       <tr>
         <td class="strong"><a href="#d842ed338bce7d8f5b5658b41c26a923040aebed" class="src_link" title="app/models/request.rb">app/models/request.rb</a></td>
         <td class="green strong">100.0 %</td>
+        <td>12</td>
         <td>11</td>
-        <td>10</td>
-        <td>10</td>
+        <td>11</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -153,11 +163,11 @@
       <tr>
         <td class="strong"><a href="#61c806c660c0dca4813e1ad9f1f2c9269f074e1a" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>10</td>
-        <td>9</td>
-        <td>9</td>
+        <td>50</td>
+        <td>33</td>
+        <td>33</td>
         <td>0</td>
-        <td>1.0</td>
+        <td>3.5</td>
       </tr>
       
       <tr>
@@ -177,7 +187,7 @@
         <td>15</td>
         <td>15</td>
         <td>0</td>
-        <td>1.7</td>
+        <td>1.8</td>
       </tr>
       
     </tbody>
@@ -199,11 +209,11 @@
         <div class="source_table" id="fa30f3dc52e930799bf8d011fff0feb21f5b0cb7">
   <div class="header">
     <h3>app/controllers/manipulate.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="red">33.33 %</span> covered</h4>
     <div>
       <b>9</b> relevant lines. 
-      <span class="green"><b>9</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>6</b> lines missed.</span>
     </div>
   </div>
   
@@ -228,20 +238,20 @@
           <code class="ruby">  def self.breakdown(collection, column)</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="4">
-          <span class="hits">12</span>
+        <li class="missed" data-hits="0" data-linenumber="4">
+          
           
           <code class="ruby">    collection.group(column).order(&#39;count_id DESC&#39;).count(:id).map do |column, count|</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="5">
-          <span class="hits">12</span>
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
           
           <code class="ruby">      percent = (count.to_f/collection.count * 100).round(2)</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="6">
-          <span class="hits">12</span>
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
           
           <code class="ruby">      {description: column, count: count, percent: percent}</code>
         </li>
@@ -270,14 +280,14 @@
           <code class="ruby">  def self.sorted_avg_response_times_by_url(urls)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="11">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
           
           <code class="ruby">    response_times = urls.map do |url|</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="12">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
           
           <code class="ruby">      {:address =&gt; url.address, :ave_response_time =&gt; url.requests.average(:response_time).to_f.round(2)}</code>
         </li>
@@ -288,8 +298,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="14">
-          <span class="hits">6</span>
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
           
           <code class="ruby">    response_times.sort_by{|data| data[:ave_response_time]}.reverse</code>
         </li>
@@ -319,11 +329,11 @@
         <div class="source_table" id="9ae1f3578d327eca3e39c18edf03be9be69b92c0">
   <div class="header">
     <h3>app/controllers/server.rb</h3>
-    <h4><span class="red">36.96 %</span> covered</h4>
+    <h4><span class="red">34.48 %</span> covered</h4>
     <div>
-      <b>92</b> relevant lines. 
-      <span class="green"><b>34</b> lines covered</span> and
-      <span class="red"><b>58</b> lines missed.</span>
+      <b>58</b> relevant lines. 
+      <span class="green"><b>20</b> lines covered</span> and
+      <span class="red"><b>38</b> lines missed.</span>
     </div>
   </div>
   
@@ -360,14 +370,14 @@
           <code class="ruby">    get &#39;/&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="6">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="6">
+          <span class="hits">5</span>
           
           <code class="ruby">      @users = User.all</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="7">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="7">
+          <span class="hits">5</span>
           
           <code class="ruby">      erb :index</code>
         </li>
@@ -501,259 +511,259 @@
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">      if !params[:payload]</code>
+          <code class="ruby">      request = Payload.new(identifier, params[:payload])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="30">
           
           
-          <code class="ruby">        body &quot;Missing the payload\n&quot;</code>
+          <code class="ruby">      status request.status</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="31">
           
           
-          <code class="ruby">        status 400</code>
+          <code class="ruby">      body   request.body</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="34">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    get &#39;/sources/:identifier&#39; do |identifier|</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="35">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      @user = User.find_by_identifier(identifier)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="37">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      if @user</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="38">
+          <span class="hits">4</span>
+          
+          <code class="ruby">        @user_info = User.new.dashboard(@user)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="39">
+          <span class="hits">4</span>
+          
+          <code class="ruby">        erb :dashboard</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="33">
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        sha      = Digest::SHA1.hexdigest(params[:payload])</code>
+          <code class="ruby">        @message = &quot;The requested user, #{identifier}, is not registered.&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="34">
+        <li class="covered" data-hits="1" data-linenumber="42">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        payload  = JSON.parse(params[:payload])</code>
+          <code class="ruby">        erb :error</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="36">
+        <li class="covered" data-hits="1" data-linenumber="46">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        user     = User.find_by_identifier(identifier)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="37">
-          
-          
-          <code class="ruby">        root_url = User.find_by_identifier(identifier).root_url</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="38">
-          
-          
-          <code class="ruby">        address  = payload[&quot;url&quot;]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="39">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="40">
-          
-          
-          <code class="ruby">        request = Request.create({:sha =&gt; sha,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="41">
-          
-          
-          <code class="ruby">                                  :response_time =&gt; payload[&quot;respondedIn&quot;].to_i,</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="42">
-          
-          
-          <code class="ruby">                                  :requested_at =&gt; payload[&quot;requestedAt&quot;]})</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="43">
-          
-          
-          <code class="ruby">        if request.errors.full_messages != []</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="44">
-          
-          
-          <code class="ruby">          body &quot;This request has already been recorded.\n&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="45">
-          
-          
-          <code class="ruby">          status 403</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
-          
-          
-          <code class="ruby">        elsif !address.include?(root_url)</code>
+          <code class="ruby">    get &#39;/sources/:identifier/urls/:path&#39; do |identifier, path|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="47">
           
           
-          <code class="ruby">          body &quot;This application is not registered to this user.\n&quot;</code>
+          <code class="ruby">      address = User.find_by_identifier(identifier).root_url + &quot;/#{path}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="48">
           
           
-          <code class="ruby">          status 403</code>
+          <code class="ruby">      @url = Url.find_by_address(address)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">        else</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="50">
           
           
-          <code class="ruby">          user.requests &lt;&lt; request</code>
+          <code class="ruby">      if @url</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="missed" data-hits="0" data-linenumber="51">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        @identifier = identifier</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="52">
           
           
-          <code class="ruby">          url = Url.find_or_create_by({:address =&gt; address})</code>
+          <code class="ruby">        @path = path</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="53">
-          
-          
-          <code class="ruby">          url.requests &lt;&lt; request</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="55">
+        <li class="missed" data-hits="0" data-linenumber="54">
           
           
-          <code class="ruby">          browser = UserAgent.parse(payload[&quot;userAgent&quot;]).browser</code>
+          <code class="ruby">        erb :url_stats</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">      else</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="56">
           
           
-          <code class="ruby">          browser = Browser.find_or_create_by({:name =&gt; browser})</code>
+          <code class="ruby">        @message = &quot;The URL, #{address}, has had zero requests.&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="57">
           
           
-          <code class="ruby">          browser.requests &lt;&lt; request</code>
+          <code class="ruby">        erb :error</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
           
           
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="59">
+        <li class="covered" data-hits="1" data-linenumber="61">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">          operating_system = UserAgent.parse(payload[&quot;userAgent&quot;]).platform</code>
+          <code class="ruby">    get &#39;/sources/:identifier/events&#39; do |identifier|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="60">
+        <li class="missed" data-hits="0" data-linenumber="62">
           
           
-          <code class="ruby">          operating_system = OperatingSystem.find_or_create_by({:name =&gt; operating_system})</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="61">
-          
-          
-          <code class="ruby">          operating_system.requests &lt;&lt; request</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="62">
-          
-          
-          <code class="ruby"></code>
+          <code class="ruby">      @user = User.find_by_identifier(identifier)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="63">
           
           
-          <code class="ruby">          resolution = &quot;#{payload[&#39;resolutionWidth&#39;]} x #{payload[&#39;resolutionHeight&#39;]}&quot;</code>
+          <code class="ruby">      @events = @user.events</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="64">
+        <li class="never" data-hits="" data-linenumber="64">
           
           
-          <code class="ruby">          resolution = Resolution.find_or_create_by({:description =&gt; resolution})</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="65">
           
           
-          <code class="ruby">          resolution.requests &lt;&lt; request</code>
+          <code class="ruby">      if @events != []</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="missed" data-hits="0" data-linenumber="66">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        erb :events</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
+        <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby">          type = Type.find_or_create_by({:name =&gt; payload[&quot;requestType&quot;]})</code>
+          <code class="ruby">      else</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="68">
           
           
-          <code class="ruby">          type.requests &lt;&lt; request</code>
+          <code class="ruby">        @message = &quot;There are no events for this user.&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="missed" data-hits="0" data-linenumber="69">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        erb :error</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="70">
+        <li class="never" data-hits="" data-linenumber="70">
           
           
-          <code class="ruby">          referral = Referral.find_or_create_by(:address =&gt; payload[&quot;referredBy&quot;])</code>
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="71">
           
           
-          <code class="ruby">          referral.requests &lt;&lt; request</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="72">
@@ -762,106 +772,106 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="73">
+        <li class="covered" data-hits="1" data-linenumber="73">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">          event = Event.find_or_create_by(:name =&gt; payload[&quot;eventName&quot;])</code>
+          <code class="ruby">    get &#39;/sources/:identifier/events/:event_name&#39; do |identifier, event_name|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="74">
           
           
-          <code class="ruby">          event.requests &lt;&lt; request</code>
+          <code class="ruby">      user = User.find_by_identifier(identifier)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="missed" data-hits="0" data-linenumber="75">
+          
+          
+          <code class="ruby">      @event = user.events.find_by_name(event_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="76">
+        <li class="missed" data-hits="0" data-linenumber="77">
           
           
-          <code class="ruby">          body &quot;Success!\n&quot;</code>
+          <code class="ruby">      if @event</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="missed" data-hits="0" data-linenumber="78">
+          
+          
+          <code class="ruby">        event_requests = @event.requests</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="79">
+          
+          
+          <code class="ruby">        @requested = event_requests.group(&quot;date_part(&#39;hour&#39;, requested_at)&quot;).count</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="80">
+          
+          
+          <code class="ruby">        (0..23).each do |hour|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="81">
+          
+          
+          <code class="ruby">          @requested[hour.to_f] ||= 0</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="missed" data-hits="0" data-linenumber="83">
+          
+          
+          <code class="ruby">        erb :event_details</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="85">
+          
+          
+          <code class="ruby">        @message = &quot;There are no requests from this event.&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="86">
+          
+          
+          <code class="ruby">        @link = {:address =&gt; &quot;/sources/#{identifier}/events&quot;, :text =&gt; &#39;Back to Events Index&#39;}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="87">
+          
+          
+          <code class="ruby">        erb :error</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="89">
           
           
           <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="80">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="81">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    get &#39;/sources/:identifier&#39; do |identifier|</code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="82">
-          <span class="hits">4</span>
-          
-          <code class="ruby">      @user = User.find_by_identifier(identifier)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="83">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="84">
-          <span class="hits">4</span>
-          
-          <code class="ruby">      if @user</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="85">
-          <span class="hits">3</span>
-          
-          <code class="ruby">        @urls_info = Manipulate.breakdown(@user.urls, :address)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="86">
-          <span class="hits">3</span>
-          
-          <code class="ruby">        @browsers_info = Manipulate.breakdown(@user.browsers, :name)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="87">
-          <span class="hits">3</span>
-          
-          <code class="ruby">        @os_info = Manipulate.breakdown(@user.operating_systems, :name)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="88">
-          <span class="hits">3</span>
-          
-          <code class="ruby">        @resolution_info = Manipulate.breakdown(@user.resolutions, :description)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="89">
-          <span class="hits">3</span>
-          
-          <code class="ruby">        @sorted_avg_response_times = Manipulate.sorted_avg_response_times_by_url(@user.urls.uniq)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="90">
@@ -870,337 +880,31 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="91">
-          <span class="hits">3</span>
-          
-          <code class="ruby">        erb :dashboard</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="92">
-          
-          
-          <code class="ruby">      else</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="93">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        @message = &quot;The requested user, #{identifier}, is not registered.&quot;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="94">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        erb :error</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="95">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="96">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="97">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="98">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    get &#39;/sources/:identifier/urls/:path&#39; do |identifier, path|</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="99">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      address = User.find_by_identifier(identifier).root_url + &quot;/#{path}&quot;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="100">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      @url = Url.find_by_address(address)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="101">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      if @url</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="102">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        @identifier = identifier</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="103">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        @path = path</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="104">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="105">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        erb :url_stats</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="106">
-          
-          
-          <code class="ruby">      else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="107">
-          
-          
-          <code class="ruby">        @message = &quot;The URL, #{address}, has had zero requests.&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="108">
-          
-          
-          <code class="ruby">        erb :error</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="109">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="110">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="111">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="112">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    get &#39;/sources/:identifier/events&#39; do |identifier|</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="113">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      @user = User.find_by_identifier(identifier)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="114">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      @events = @user.events</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="115">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="116">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      if @events != []</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="117">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        erb :events</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="118">
-          
-          
-          <code class="ruby">      else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="119">
-          
-          
-          <code class="ruby">        @message = &quot;There are no events for this user.&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="120">
-          
-          
-          <code class="ruby">        erb :error</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="121">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="122">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="123">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="124">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    get &#39;/sources/:identifier/events/:event_name&#39; do |identifier, event_name|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="125">
-          
-          
-          <code class="ruby">      user = User.find_by_identifier(identifier)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="126">
-          
-          
-          <code class="ruby">      @event = user.events.find_by_name(event_name)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="127">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="128">
-          
-          
-          <code class="ruby">      if @event</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="129">
-          
-          
-          <code class="ruby">        event_requests = @event.requests</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="130">
-          
-          
-          <code class="ruby">        @requested = event_requests.group(&quot;date_part(&#39;hour&#39;, requested_at)&quot;).count</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="131">
-          
-          
-          <code class="ruby">        (0..23).each do |hour|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="132">
-          
-          
-          <code class="ruby">          @requested[hour.to_f] ||= 0</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="133">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="134">
-          
-          
-          <code class="ruby">        erb :event_details</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="135">
-          
-          
-          <code class="ruby">      else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="136">
-          
-          
-          <code class="ruby">        @message = &quot;There are no requests from this event.&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="137">
-          
-          
-          <code class="ruby">        @link = {:address =&gt; &quot;/sources/#{identifier}/events&quot;, :text =&gt; &#39;Back to Events Index&#39;}</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="138">
-          
-          
-          <code class="ruby">        erb :error</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="139">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="140">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="141">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="142">
+        <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
           <code class="ruby">    not_found do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="143">
+        <li class="missed" data-hits="0" data-linenumber="92">
           
           
           <code class="ruby">      erb :error</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="144">
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="145">
+        <li class="never" data-hits="" data-linenumber="94">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="146">
+        <li class="never" data-hits="" data-linenumber="95">
           
           
           <code class="ruby">end</code>
@@ -1318,6 +1022,642 @@
   </pre>
 </div>
       
+        <div class="source_table" id="cf2fdd3fb5631e1a19ba30f30c82f82d7c6838e5">
+  <div class="header">
+    <h3>app/models/payload.rb</h3>
+    <h4><span class="red">24.62 %</span> covered</h4>
+    <div>
+      <b>65</b> relevant lines. 
+      <span class="green"><b>16</b> lines covered</span> and
+      <span class="red"><b>49</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Payload</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_reader :request,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby">              :status,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby">              :body</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(identifier, params = false)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @request  = Request.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="8">
+          
+          
+          <code class="ruby">    @user     = User.find_by_identifier(identifier)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
+          
+          <code class="ruby">    valid?(identifier, params)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def valid?(identifier, params)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">    if !params</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">      @body   = &quot;Missing the payload\n&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
+          
+          <code class="ruby">      @status = 400</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="17">
+          
+          
+          <code class="ruby">      parse(params, identifier)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def parse(params, identifier)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    payload  = JSON.parse(params)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="24">
+          
+          
+          <code class="ruby">    request.user          = @user if @user</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
+          
+          <code class="ruby">    request.sha           = sha(params)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    request.requested_at  = requested_at(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">    request.response_time = response_time(payload)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="29">
+          
+          
+          <code class="ruby">    url(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="30">
+          
+          
+          <code class="ruby">    browser(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="31">
+          
+          
+          <code class="ruby">    operating_system(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
+          
+          <code class="ruby">    referral(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="33">
+          
+          
+          <code class="ruby">    type(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="34">
+          
+          
+          <code class="ruby">    event(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="35">
+          
+          
+          <code class="ruby">    browser(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="36">
+          
+          
+          <code class="ruby">    resolution(payload)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="38">
+          
+          
+          <code class="ruby">    response(request)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def sha(params)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="42">
+          
+          
+          <code class="ruby">    Digest::SHA1.hexdigest(params)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="45">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def requested_at(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
+          
+          <code class="ruby">    payload[&quot;requestedAt&quot;]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def response_time(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="50">
+          
+          
+          <code class="ruby">    payload[&quot;respondedIn&quot;].to_i</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="53">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def url(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="54">
+          
+          
+          <code class="ruby">    url = Url.find_or_create_by({:address =&gt; payload[&quot;url&quot;]})</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="55">
+          
+          
+          <code class="ruby">    url.requests &lt;&lt; request</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def browser(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="59">
+          
+          
+          <code class="ruby">    browser = UserAgent.parse(payload[&quot;userAgent&quot;]).browser</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="60">
+          
+          
+          <code class="ruby">    browser = Browser.find_or_create_by({:name =&gt; browser})</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="61">
+          
+          
+          <code class="ruby">    browser.requests &lt;&lt; request</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="62">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="64">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def operating_system(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="65">
+          
+          
+          <code class="ruby">    operating_system = UserAgent.parse(payload[&quot;userAgent&quot;]).platform</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="66">
+          
+          
+          <code class="ruby">    operating_system = OperatingSystem.find_or_create_by({:name =&gt; operating_system})</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="67">
+          
+          
+          <code class="ruby">    operating_system.requests &lt;&lt; request</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="68">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="69">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="70">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def resolution(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="71">
+          
+          
+          <code class="ruby">    resolution = &quot;#{payload[&#39;resolutionWidth&#39;]} x #{payload[&#39;resolutionHeight&#39;]}&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="72">
+          
+          
+          <code class="ruby">    resolution = Resolution.find_or_create_by({:description =&gt; resolution})</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="73">
+          
+          
+          <code class="ruby">    resolution.requests &lt;&lt; request</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="74">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="75">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="76">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def type(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="77">
+          
+          
+          <code class="ruby">    type = Type.find_or_create_by({:name =&gt; payload[&quot;requestType&quot;]})</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="78">
+          
+          
+          <code class="ruby">    type.requests &lt;&lt; request</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="79">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="81">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def referral(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="82">
+          
+          
+          <code class="ruby">    referral = Referral.find_or_create_by(:address =&gt; payload[&quot;referredBy&quot;])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="83">
+          
+          
+          <code class="ruby">    referral.requests &lt;&lt; request</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="85">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def event(payload)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="87">
+          
+          
+          <code class="ruby">    event = Event.find_or_create_by(:name =&gt; payload[&quot;eventName&quot;])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="88">
+          
+          
+          <code class="ruby">    event.requests &lt;&lt; request</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="89">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="90">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="91">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def response(request)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="92">
+          
+          
+          <code class="ruby">    if request.save</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="93">
+          
+          
+          <code class="ruby">      @body   = &quot;Success!\n&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="94">
+          
+          
+          <code class="ruby">      @status = 200</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="95">
+          
+          
+          <code class="ruby">    elsif !@user</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="96">
+          
+          
+          <code class="ruby">      @body   = &quot;This application is not registered to this user.\n&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="97">
+          
+          
+          <code class="ruby">      @status = 403</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="98">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="99">
+          
+          
+          <code class="ruby">      @body   = &quot;This request already exists.\n&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="100">
+          
+          
+          <code class="ruby">      @status = 403</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="101">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="102">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
         <div class="source_table" id="eea8b7968a2585b13ac3a3760c970fb038fa6b1a">
   <div class="header">
     <h3>app/models/referral.rb</h3>
@@ -1359,8 +1699,8 @@
     <h3>app/models/request.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>10</b> relevant lines. 
-      <span class="green"><b>10</b> lines covered</span> and
+      <b>11</b> relevant lines. 
+      <span class="green"><b>11</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1428,7 +1768,13 @@
           <code class="ruby">  validates  :sha, uniqueness: true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates  :user_id, presence: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby">end</code>
@@ -1575,8 +1921,8 @@
     <h3>app/models/user.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>9</b> relevant lines. 
-      <span class="green"><b>9</b> lines covered</span> and
+      <b>33</b> relevant lines. 
+      <span class="green"><b>33</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1639,6 +1985,246 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def dashboard(user)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="12">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    params                                    = {}</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="13">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    params[:url_info]                         = url_info(user)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="14">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    params[:browser_info]                     = browser_info(user.browsers)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="15">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    params[:os_info]                          = os_info(user.operating_systems)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="16">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    params[:resolution_info]                  = resolution_info(user.resolutions)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="17">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    params[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url(user.urls.uniq)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="18">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    params</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def url_info(user)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="22">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    breakdown(user.urls, :address)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def browser_info(user)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="26">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    breakdown(browsers, :name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="29">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def os_info(os)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="30">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    breakdown(os, :name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def resolution_info(resolutions)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="34">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    breakdown(resolutions, :description)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def sorted_avg_response_times_by_url(urls)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="38">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    response_times = urls.map do |url|</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="39">
+          <span class="hits">4</span>
+          
+          <code class="ruby">      {:address =&gt; url.address, :ave_response_time =&gt; url.requests.average(:response_time).to_f.round(2)}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="41">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    response_times.sort_by{|data| data[:ave_response_time]}.reverse</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="44">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def breakdown(collection, column)</code>
+        </li>
+      
+        <li class="covered" data-hits="16" data-linenumber="45">
+          <span class="hits">16</span>
+          
+          <code class="ruby">    collection.group(column).order(&#39;count_id DESC&#39;).count(:id).map do |column, count|</code>
+        </li>
+      
+        <li class="covered" data-hits="12" data-linenumber="46">
+          <span class="hits">12</span>
+          
+          <code class="ruby">      percent = (count.to_f/collection.count * 100).round(2)</code>
+        </li>
+      
+        <li class="covered" data-hits="12" data-linenumber="47">
+          <span class="hits">12</span>
+          
+          <code class="ruby">      {description: column, count: count, percent: percent}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">end</code>
@@ -1836,8 +2422,8 @@
           <code class="ruby"># require the model(s)</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="13">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="11" data-linenumber="13">
+          <span class="hits">11</span>
           
           <code class="ruby">Dir[APP_ROOT.join(&#39;app&#39;, &#39;models&#39;, &#39;*.rb&#39;)].each { |file| require file }</code>
         </li>
