@@ -18,9 +18,9 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do |identifier|
-      request = Payload.new(identifier, params[:payload])
-      status request.status
-      body   request.body
+      payload = Payload.new(identifier, params[:payload])
+      status payload.status
+      body   payload.body
     end
 
     get '/sources/:identifier' do |identifier|

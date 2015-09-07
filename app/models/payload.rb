@@ -3,43 +3,23 @@ class Payload
               :status,
               :body
 
-  def initialize(identifier, params = false)
+  def initialize(identifier, payload = false)
     @request  = Request.new
     @user     = User.find_by_identifier(identifier)
-    valid?(identifier, params)
+    valid?(identifier, payload)
   end
 
-  def valid?(identifier, params)
-    if !params
+  def valid?(identifier, payload)
+    if !payload
       @body   = "Missing the payload\n"
       @status = 400
     else
-      parse(params, identifier)
+      generate_response(payload)
     end
   end
 
-  def parse(params, identifier)
-    payload  = JSON.parse(params)
-
-    request.user          = @user if @user
-    request.sha           = sha(params)
-    request.requested_at  = requested_at(payload)
-    request.response_time = response_time(payload)
-
-    url(payload)
-    browser(payload)
-    operating_system(payload)
-    referral(payload)
-    type(payload)
-    event(payload)
-    browser(payload)
-    resolution(payload)
-
-    response(request)
-  end
-
-  def sha(params)
-    Digest::SHA1.hexdigest(params)
+  def sha(payload)
+    Digest::SHA1.hexdigest(payload)
   end
 
   def requested_at(payload)
@@ -88,8 +68,15 @@ class Payload
     event.requests << request
   end
 
-  def response(request)
-    if request.save
+  def generate_response(raw_payload)
+    payload  = JSON.parse(raw_payload)
+
+    request.user          = @user if @user
+    request.sha           = sha(raw_payload)
+    request.requested_at  = requested_at(payload)
+    request.response_time = response_time(payload)
+
+    if save_payload(payload)
       @body   = "Success!\n"
       @status = 200
     elsif !@user
@@ -100,4 +87,21 @@ class Payload
       @status = 403
     end
   end
+
+  def save_payload(payload)
+    if request.save
+      url(payload)
+      browser(payload)
+      operating_system(payload)
+      referral(payload)
+      type(payload)
+      event(payload)
+      browser(payload)
+      resolution(payload)
+      true
+    else
+      false
+    end
+  end
+
 end

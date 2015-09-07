@@ -73,7 +73,7 @@ class ProcessRequestsTest < Minitest::Test
     post "/sources/clarence/data", attributes1
     post "/sources/evilclarence/data", attributes2
     assert_equal 1, Url.count
-    assert_equal "This request already exists.\n", last_response.body
+    assert_equal "This application is not registered to this user.\n", last_response.body
   end
 
   def setup
