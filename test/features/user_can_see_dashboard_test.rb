@@ -27,7 +27,6 @@ class UserCanSeeDashboardTest < FeatureTest
     click_link("clarence")
     first(:link,"http://clarence.ninja/blog").click
     assert_equal "/sources/clarence/urls/blog", current_path
-    # require 'pry'; binding.pry
     assert page.has_content?("37")
     assert page.has_content?("OpenBSD")
     assert page.has_content?("Firefox")
@@ -43,14 +42,27 @@ class UserCanSeeDashboardTest < FeatureTest
     assert page.has_content?("tubbin")
   end
 
+  def test_user_sees_an_error_if_there_are_no_events
+    visit '/'
+    click_link("zombo")
+    click_on("Events")
+    assert_equal "/sources/zombo/events", current_path
+    assert page.has_content?("There are no events for this user")
+  end
+
   def test_user_can_see_event_specific_details
     visit '/'
     click_link("clarence")
     click_on("Events")
     click_link("tubbin")
     assert_equal "/sources/clarence/events/tubbin", current_path
-    assert page.has_content("tubbin")
-    assert page.has_content("9:00 PM - 1")
+    assert page.has_content?("tubbin")
+    assert page.has_content?("6:00 PM -")
+  end
+
+  def test_user_sees_an_error_for_an_undefined_event
+    visit '/sources/clarence/events/facebookParty'
+    assert page.has_content?("There are no requests from this event.")
   end
 
   def setup
