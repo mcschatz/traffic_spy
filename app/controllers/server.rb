@@ -1,5 +1,3 @@
-require_relative 'manipulate'
-
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
@@ -12,17 +10,11 @@ module TrafficSpy
     end
 
     post '/sources' do
-      user = User.new({:root_url => params[:rootUrl], :identifier => params[:identifier]})
-      if user.save
-        id_hash = {identifier: user.identifier}
-        body "#{id_hash.to_json}"
-      elsif user.identifier == nil || user.root_url == nil
-        body user.errors.full_messages
-        status 400
-      else
-        body user.errors.full_messages
-        status 403
-      end
+      user   = User.new({:root_url => params[:rootUrl],
+                         :identifier => params[:identifier]})
+      user   = user.response(user)
+      status user[:status]
+      body   user[:body]
     end
 
     post '/sources/:identifier/data' do |identifier|
@@ -38,7 +30,7 @@ module TrafficSpy
         @user_info = User.new.dashboard(@user)
         erb :dashboard
       else
-        @message = "The requested user, #{identifier}, is not registered."
+        @message = "The requested user, #{identifier.capitalize}, is not registered."
         erb :error
       end
     end
@@ -50,7 +42,6 @@ module TrafficSpy
       if @url
         @identifier = identifier
         @path = path
-
         erb :url_stats
       else
         @message = "The URL, #{address}, has had zero requests."
@@ -72,14 +63,9 @@ module TrafficSpy
 
     get '/sources/:identifier/events/:event_name' do |identifier, event_name|
       user = User.find_by_identifier(identifier)
-      @event = user.events.find_by_name(event_name)
+      @event = user.event_count_by_hour(user, event_name)
 
-      if @event
-        event_requests = @event.requests
-        @requested = event_requests.group("date_part('hour', requested_at)").count
-        (0..23).each do |hour|
-          @requested[hour.to_f] ||= 0
-        end
+      if @event.size > 0
         erb :event_details
       else
         @message = "There are no requests from this event."
