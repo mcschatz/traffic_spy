@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     breakdown(user.urls, :address)
   end
 
-  def browser_info(user)
+  def browser_info(browsers)
     breakdown(browsers, :name)
   end
 
