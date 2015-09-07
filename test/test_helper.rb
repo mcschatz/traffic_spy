@@ -1,7 +1,7 @@
 ENV["RACK_ENV"] ||= "test"
 
 require 'simplecov'
-Simplecov.start
+SimpleCov.start
 
 require 'bundler'
 Bundler.require
