@@ -5,6 +5,7 @@
 body {
   background-image: url("/images/background_spy_vs_spy.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {

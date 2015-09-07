@@ -1,4 +1,7 @@
 <h1 class='text-center'>Error Page</h1>
 <p>
-  <h1><%= @message %><h1>
+  <h1><%= @message %></h1>
+  <% if @link %>
+    <%= "<a href='#{@link[:address]}' class='btn btn-primary'>#{@link[:text]}</a>"%>
+  <% end %>
 </p>
