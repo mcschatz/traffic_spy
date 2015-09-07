@@ -13,13 +13,13 @@ class User < ActiveRecord::Base
   end
 
   def dashboard(user)
-    params                                    = {}
-    params[:url_info]                         = column_summary(user.urls, :address)
-    params[:browser_info]                     = column_summary(user.browsers, :name)
-    params[:os_info]                          = column_summary(user.operating_systems, :name)
-    params[:resolution_info]                  = column_summary(user.resolutions, :description)
-    params[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url(user)
-    params
+    user_info                                    = {}
+    user_info[:url_info]                         = column_summary(user.urls, :address)
+    user_info[:browser_info]                     = column_summary(user.browsers, :name)
+    user_info[:os_info]                          = column_summary(user.operating_systems, :name)
+    user_info[:resolution_info]                  = column_summary(user.resolutions, :description)
+    user_info[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url(user)
+    user_info
   end
 
   def event_count_by_hour(user, event_name)
@@ -54,7 +54,7 @@ private
       403
     end
   end
-  
+
   def column_summary(collection, column)
     collection.group(column).order('count_id DESC').count(:id).map do |column, count|
       percent = (count.to_f/collection.count * 100).round(2)
