@@ -5,7 +5,7 @@
   <section class='col-md-6'>
     <h1>URLs</h1>
     <ol>
-      <% @user_info.each do |url| %>
+      <% @user_info[:url_info].each do |url| %>
         <li><%= "<a href='/sources/#{@user.identifier}/urls#{URI(url[:description]).path}'>#{url[:description]}</a>... #{url[:count]} requests... #{url[:percent]}%" %></li>
       <%end%>
     </ol>
@@ -14,7 +14,7 @@
   <section class='col-md-6'>
     <h1>Response Times</h1>
     <ol>
-      <% @sorted_avg_response_times.each do |response_time| %>
+      <% @user_info[:sorted_avg_response_times_by_url].each do |response_time| %>
         <li><%= "<a href='/sources/#{@user.identifier}/urls#{URI(response_time[:address]).path}'>#{response_time[:address]}</a>: #{response_time[:ave_response_time]} ms" %></li>
       <%end%>
     </ol>
@@ -25,19 +25,19 @@
 <section class='col-md-6'>
   <h1>Browsers</h1>
   <ol>
-    <% @browsers_info.each do |browser| %>
+    <% @user_info[:browser_info].each do |browser| %>
     <li><%= "#{browser[:description]}... #{browser[:count]} requests... #{browser[:percent]}%" %></li>
     <%end%>
   </ol>
   <h1>Operating Systems</h1>
   <ol>
-    <% @os_info.each do |os| %>
+    <% @user_info[:os_info].each do |os| %>
     <li><%= "#{os[:description]}... #{os[:count]} requests... #{os[:percent]}%" %></li>
     <%end%>
   </ol>
   <h1>Resolutions</h1>
   <ol>
-    <% @resolution_info.each do |resolution| %>
+    <% @user_info[:resolution_info].each do |resolution| %>
     <li><%= "#{resolution[:description]}... #{resolution[:count]} requests... #{resolution[:percent]}%" %></li>
     <%end%>
   </ol>

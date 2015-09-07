@@ -71,9 +71,10 @@ class ProcessRequestsTest < Minitest::Test
     identifier  = user.identifier
 
     post "/sources/#{identifier}/data", attributes
-    get '/sources/clarence', attributes
+    # get '/sources/clarence', attributes
+    # require 'pry'; binding.pry
 
-    assert_equal "blah", user.dashboard
+    assert_equal "blah", User.new.dashboard(user)
   end
 
   def setup
