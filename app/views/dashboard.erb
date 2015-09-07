@@ -4,16 +4,12 @@
 <section class='row'>
   <section class='col-md-6'>
     <h1>URLs</h1>
-    <ol><%= partial :'partials/user_info', collection: @user_info[:url_info] %></ol>
+    <ol><%= partial :'partials/user_info_with_link', collection: @user_info[:url_info] %></ol>
   </section>
 
   <section class='col-md-6'>
     <h1>Response Times</h1>
-    <ol>
-      <% @user_info[:sorted_avg_response_times_by_url].each do |response_time| %>
-        <li><%= "<a href='/sources/#{@user.identifier}/urls#{URI(response_time[:address]).path}'>#{response_time[:address]}</a>: #{response_time[:ave_response_time]} ms" %></li>
-      <%end%>
-    </ol>
+    <ol><%= partial :'partials/response_time', collection: @user_info[:sorted_avg_response_times_by_url] %></ol>
   </section>
 </section>
 <hr>
