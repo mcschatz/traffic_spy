@@ -54,13 +54,24 @@ class ProcessRequestsTest < Minitest::Test
     assert_equal "This application is not registered to this user.\n", last_response.body
   end
 
-  def test_it_does_not_add_data_to_the_url_table_when_a_request_is_not_valid
+  def test_it_does_not_add_data_to_the_url_table_when_a_request_already_exists
     user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
     attributes = {:payload => '{"url":"clarence.ninja"}'}
     identifier  = user.identifier
 
     post "/sources/#{identifier}/data", attributes
     post "/sources/#{identifier}/data", attributes
+    assert_equal 1, Url.count
+    assert_equal "This request already exists.\n", last_response.body
+  end
+
+  def test_it_does_not_add_data_to_the_url_table_when_a_user_is_invalid
+    user = User.create(identifier: 'clarence', root_url: 'clarence.ninja')
+    attributes1 = {:payload => '{"url":"clarence.ninja/blog"}'}
+    attributes2 = {:payload => '{"url":"clarence.pirate/blog"}'}
+
+    post "/sources/clarence/data", attributes1
+    post "/sources/evilclarence/data", attributes2
     assert_equal 1, Url.count
     assert_equal "This request already exists.\n", last_response.body
   end
