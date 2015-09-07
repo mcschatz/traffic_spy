@@ -14,18 +14,18 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-09-06T16:34:53-06:00">2015-09-06T16:34:53-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-09-06T17:13:59-06:00">2015-09-06T17:13:59-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">59.62%</span></span>
+    (<span class="covered_percent"><span class="red">62.82%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="red">
-         0.94
+       <span class="green">
+         1.1
        </span>
     </span> hits/line)
   </h2>
@@ -33,8 +33,8 @@
   <div>
     <b>13</b> files in total.
     <b>156</b> relevant lines. 
-    <span class="green"><b>93</b> lines covered</span> and
-    <span class="red"><b>63</b> lines missed </span>
+    <span class="green"><b>98</b> lines covered</span> and
+    <span class="red"><b>58</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -57,17 +57,17 @@
         <td>9</td>
         <td>9</td>
         <td>0</td>
-        <td>3.9</td>
+        <td>5.7</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#9ae1f3578d327eca3e39c18edf03be9be69b92c0" class="src_link" title="app/controllers/server.rb">app/controllers/server.rb</a></td>
-        <td class="red strong">31.52 %</td>
+        <td class="red strong">36.96 %</td>
         <td>146</td>
         <td>92</td>
-        <td>29</td>
-        <td>63</td>
-        <td>0.5</td>
+        <td>34</td>
+        <td>58</td>
+        <td>0.6</td>
       </tr>
       
       <tr>
@@ -228,20 +228,20 @@
           <code class="ruby">  def self.breakdown(collection, column)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="4">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="12" data-linenumber="4">
+          <span class="hits">12</span>
           
           <code class="ruby">    collection.group(column).order(&#39;count_id DESC&#39;).count(:id).map do |column, count|</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="5">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="12" data-linenumber="5">
+          <span class="hits">12</span>
           
           <code class="ruby">      percent = (count.to_f/collection.count * 100).round(2)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="6">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="12" data-linenumber="6">
+          <span class="hits">12</span>
           
           <code class="ruby">      {description: column, count: count, percent: percent}</code>
         </li>
@@ -270,14 +270,14 @@
           <code class="ruby">  def self.sorted_avg_response_times_by_url(urls)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="11">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="11">
+          <span class="hits">3</span>
           
           <code class="ruby">    response_times = urls.map do |url|</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="12">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="12">
+          <span class="hits">3</span>
           
           <code class="ruby">      {:address =&gt; url.address, :ave_response_time =&gt; url.requests.average(:response_time).to_f.round(2)}</code>
         </li>
@@ -288,8 +288,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="14">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="6" data-linenumber="14">
+          <span class="hits">6</span>
           
           <code class="ruby">    response_times.sort_by{|data| data[:ave_response_time]}.reverse</code>
         </li>
@@ -319,11 +319,11 @@
         <div class="source_table" id="9ae1f3578d327eca3e39c18edf03be9be69b92c0">
   <div class="header">
     <h3>app/controllers/server.rb</h3>
-    <h4><span class="red">31.52 %</span> covered</h4>
+    <h4><span class="red">36.96 %</span> covered</h4>
     <div>
       <b>92</b> relevant lines. 
-      <span class="green"><b>29</b> lines covered</span> and
-      <span class="red"><b>63</b> lines missed.</span>
+      <span class="green"><b>34</b> lines covered</span> and
+      <span class="red"><b>58</b> lines missed.</span>
     </div>
   </div>
   
@@ -360,14 +360,14 @@
           <code class="ruby">    get &#39;/&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="6">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="6">
+          <span class="hits">4</span>
           
           <code class="ruby">      @users = User.all</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="7">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="7">
+          <span class="hits">4</span>
           
           <code class="ruby">      erb :index</code>
         </li>
@@ -816,8 +816,8 @@
           <code class="ruby">    get &#39;/sources/:identifier&#39; do |identifier|</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="82">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="82">
+          <span class="hits">4</span>
           
           <code class="ruby">      @user = User.find_by_identifier(identifier)</code>
         </li>
@@ -828,38 +828,38 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="84">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="84">
+          <span class="hits">4</span>
           
           <code class="ruby">      if @user</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="85">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="85">
+          <span class="hits">3</span>
           
           <code class="ruby">        @urls_info = Manipulate.breakdown(@user.urls, :address)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="86">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="86">
+          <span class="hits">3</span>
           
           <code class="ruby">        @browsers_info = Manipulate.breakdown(@user.browsers, :name)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="87">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="87">
+          <span class="hits">3</span>
           
           <code class="ruby">        @os_info = Manipulate.breakdown(@user.operating_systems, :name)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="88">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="88">
+          <span class="hits">3</span>
           
           <code class="ruby">        @resolution_info = Manipulate.breakdown(@user.resolutions, :description)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="89">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="89">
+          <span class="hits">3</span>
           
           <code class="ruby">        @sorted_avg_response_times = Manipulate.sorted_avg_response_times_by_url(@user.urls.uniq)</code>
         </li>
@@ -870,8 +870,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="91">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="91">
+          <span class="hits">3</span>
           
           <code class="ruby">        erb :dashboard</code>
         </li>
@@ -936,14 +936,14 @@
           <code class="ruby">      if @url</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="102">
-          
+        <li class="covered" data-hits="1" data-linenumber="102">
+          <span class="hits">1</span>
           
           <code class="ruby">        @identifier = identifier</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="103">
-          
+        <li class="covered" data-hits="1" data-linenumber="103">
+          <span class="hits">1</span>
           
           <code class="ruby">        @path = path</code>
         </li>
@@ -954,8 +954,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="105">
-          
+        <li class="covered" data-hits="1" data-linenumber="105">
+          <span class="hits">1</span>
           
           <code class="ruby">        erb :url_stats</code>
         </li>
@@ -966,14 +966,14 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="107">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="107">
+          
           
           <code class="ruby">        @message = &quot;The URL, #{address}, has had zero requests.&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="108">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="108">
+          
           
           <code class="ruby">        erb :error</code>
         </li>
@@ -1002,14 +1002,14 @@
           <code class="ruby">    get &#39;/sources/:identifier/events&#39; do |identifier|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="113">
-          
+        <li class="covered" data-hits="1" data-linenumber="113">
+          <span class="hits">1</span>
           
           <code class="ruby">      @user = User.find_by_identifier(identifier)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="114">
-          
+        <li class="covered" data-hits="1" data-linenumber="114">
+          <span class="hits">1</span>
           
           <code class="ruby">      @events = @user.events</code>
         </li>
@@ -1020,14 +1020,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="116">
-          
+        <li class="covered" data-hits="1" data-linenumber="116">
+          <span class="hits">1</span>
           
           <code class="ruby">      if @events != []</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="117">
-          
+        <li class="covered" data-hits="1" data-linenumber="117">
+          <span class="hits">1</span>
           
           <code class="ruby">        erb :events</code>
         </li>

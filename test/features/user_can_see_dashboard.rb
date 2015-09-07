@@ -14,7 +14,7 @@ class UserCanSeeDashboardTest < FeatureTest
     assert page.has_content?("Firefox")
     assert page.has_content?("OpenBSD")
     assert page.has_content?("1920 x 1280")
-    assert page.has_content("37")
+    assert page.has_content?("http://clarence.ninja/blog: 37")
   end
 
   def test_user_gets_an_error_page_for_invalid_identifier
@@ -27,12 +27,26 @@ class UserCanSeeDashboardTest < FeatureTest
     click_link("clarence")
     first(:link,"http://clarence.ninja/blog").click
     assert_equal "/sources/clarence/urls/blog", current_path
+    # require 'pry'; binding.pry
+    assert page.has_content?("37")
+    assert page.has_content?("OpenBSD")
+    assert page.has_content?("Firefox")
+    assert page.has_content?("GET")
+    assert page.has_content?("http://www.google.com")
+  end
+
+  def test_user_can_see_event_index
+    visit '/'
+    click_link("clarence")
+    click_on("Events")
+    assert_equal "/sources/clarence/events", current_path
+    assert page.has_content?("tubbin")
   end
 
   def setup
     DatabaseCleaner.start
 
-    User.create(identifier: 'clarence', root_url: 'clarence.ninja')
+    User.create(identifier: 'clarence', root_url: 'http://clarence.ninja')
     Request.create(user_id: 1,
                    url_id: 1,
                    browser_id: 1,
