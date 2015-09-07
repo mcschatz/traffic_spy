@@ -63,9 +63,9 @@ module TrafficSpy
 
     get '/sources/:identifier/events/:event_name' do |identifier, event_name|
       user = User.find_by_identifier(identifier)
-      @event = user.find_events(user, event_name)
+      @event = user.event_count_by_hour(user, event_name)
 
-      if @event
+      if @event.size > 0
         erb :event_details
       else
         @message = "There are no requests from this event."

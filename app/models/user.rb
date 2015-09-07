@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def find_events(user, event_name)
+  def event_count_by_hour(user, event_name)
     event = user.events.find_by_name(event_name)
     if event
       events = event.requests.group("date_part('hour', requested_at)").count
@@ -58,21 +58,17 @@ class User < ActiveRecord::Base
       end
       events
     else
-      false
+      {}
     end
   end
 
   def response(user)
-    params          = {}
-    params[:body]   = body(user)
-    params[:status] = status(user)
-    params
+    {:body => body(user), :status => status(user)}
   end
 
   def body(user)
     if user.save
-     id_hash = {identifier: user.identifier}
-      "#{id_hash.to_json}"
+     {:identifier => user.identifier}.to_json
     else
       user.errors.full_messages
     end
