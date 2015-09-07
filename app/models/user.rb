@@ -10,28 +10,12 @@ class User < ActiveRecord::Base
 
   def dashboard(user)
     params                                    = {}
-    params[:url_info]                         = url_info(user)
-    params[:browser_info]                     = browser_info(user)
-    params[:os_info]                          = os_info(user)
-    params[:resolution_info]                  = resolution_info(user)
+    params[:url_info]                         = breakdown(user.urls, :address)
+    params[:browser_info]                     = breakdown(user.browsers, :name)
+    params[:os_info]                          = breakdown(user.operating_systems, :name)
+    params[:resolution_info]                  = breakdown(user.resolutions, :description)
     params[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url(user)
     params
-  end
-
-  def url_info(user)
-    breakdown(user.urls, :address)
-  end
-
-  def browser_info(user)
-    breakdown(user.browsers, :name)
-  end
-
-  def os_info(user)
-    breakdown(user.operating_systems, :name)
-  end
-
-  def resolution_info(user)
-    breakdown(user.resolutions, :description)
   end
 
   def sorted_avg_response_times_by_url(user)
