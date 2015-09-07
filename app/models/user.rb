@@ -8,29 +8,18 @@ class User < ActiveRecord::Base
   has_many  :resolutions, :through => :requests
   has_many  :events, :through => :requests
 
+  def response(user)
+    {:body => body(user), :status => status(user)}
+  end
+
   def dashboard(user)
     params                                    = {}
-    params[:url_info]                         = breakdown(user.urls, :address)
-    params[:browser_info]                     = breakdown(user.browsers, :name)
-    params[:os_info]                          = breakdown(user.operating_systems, :name)
-    params[:resolution_info]                  = breakdown(user.resolutions, :description)
+    params[:url_info]                         = column_summary(user.urls, :address)
+    params[:browser_info]                     = column_summary(user.browsers, :name)
+    params[:os_info]                          = column_summary(user.operating_systems, :name)
+    params[:resolution_info]                  = column_summary(user.resolutions, :description)
     params[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url(user)
     params
-  end
-
-  def sorted_avg_response_times_by_url(user)
-    urls = user.urls.uniq
-    response_times = urls.map do |url|
-      {:address => url.address, :ave_response_time => url.requests.average(:response_time).to_f.round(2)}
-    end
-    response_times.sort_by{|data| data[:ave_response_time]}.reverse
-  end
-
-  def breakdown(collection, column)
-    collection.group(column).order('count_id DESC').count(:id).map do |column, count|
-      percent = (count.to_f/collection.count * 100).round(2)
-      {description: column, count: count, percent: percent}
-    end
   end
 
   def event_count_by_hour(user, event_name)
@@ -46,9 +35,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def response(user)
-    {:body => body(user), :status => status(user)}
-  end
+private
 
   def body(user)
     if user.save
@@ -67,4 +54,20 @@ class User < ActiveRecord::Base
       403
     end
   end
+  
+  def column_summary(collection, column)
+    collection.group(column).order('count_id DESC').count(:id).map do |column, count|
+      percent = (count.to_f/collection.count * 100).round(2)
+      {description: column, count: count, percent: percent}
+    end
+  end
+
+  def sorted_avg_response_times_by_url(user)
+    urls = user.urls.uniq
+    response_times = urls.map do |url|
+      {:address => url.address, :ave_response_time => url.requests.average(:response_time).to_f.round(2)}
+    end
+    response_times.sort_by{|data| data[:ave_response_time]}.reverse
+  end
+
 end
