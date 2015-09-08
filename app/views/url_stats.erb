@@ -91,7 +91,7 @@
     <h1>HTTP Verbs</h1>
     <ul>
     <% @url.types.pluck(:name).uniq.each do |type| %>
-      <li><%= type %></li>
+      <li><h2><%= type %></h2></li>
     <% end %>
     </ul>
   </section>
