@@ -10,7 +10,26 @@
       </tr>
     </thead>
     <tbody>
-      <% (0..23).each do |hour| %>
+      <% (0..11).each do |hour| %>
+      <tr>
+        <td><%= hour_start(hour) %></td>
+        <td><%= @event[hour.to_f] %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<section class='container col-md-6'>
+  <table class='table table-responsive table-striped table-bordered'>
+    <thead>
+      <tr>
+        <th>Start of Hour</th>
+        <th>Requests</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (12..23).each do |hour| %>
       <tr>
         <td><%= hour_start(hour) %></td>
         <td><%= @event[hour.to_f] %></td>
