@@ -42,7 +42,7 @@ module TrafficSpy
       end
     end
 
-    get '/sources/:identifier/urls/:path' do |identifier, path|
+    get '/sources/:identifier/urls/*' do |identifier, path|
       address = User.find_by_identifier(identifier).root_url + "/#{path}"
       @url = Url.find_by_address(address)
 
