@@ -9,37 +9,37 @@ class UserTest < ModelTest
   def test_user_dashboard_returns_url_info
     user = User.first
     assert_equal "http://jumpstartlab.com/blog",
-    user.dashboard(user)[:url_info].first[:description]
+    User.stats(user)[:url_info].first[:description]
   end
 
   def test_user_dashboard_returns_browser_info
     user = User.first
     assert_equal "Chrome",
-    user.dashboard(user)[:browser_info].first[:description]
+    User.stats(user)[:browser_info].first[:description]
   end
 
   def test_user_dashboard_returns_os_info
     user = User.first
     assert_equal "Macintosh%3B Intel Mac OS X 10_8_2",
-    user.dashboard(user)[:os_info].first[:description]
+    User.stats(user)[:os_info].first[:description]
   end
 
   def test_user_dashboard_returns_resolution_info
     user = User.first
     assert_equal "800 x 600",
-    user.dashboard(user)[:resolution_info].first[:description]
+    User.stats(user)[:resolution_info].first[:description]
   end
 
   def test_user_dashboard_returns_sorted_avg_response_times_by_url
     user = User.first
     assert_equal "http://jumpstartlab.com/blog",
-    user.dashboard(user)[:sorted_avg_response_times_by_url].first[:address]
+    User.stats(user)[:sorted_avg_response_times_by_url].first[:address]
     assert_equal 148.67,
-    user.dashboard(user)[:sorted_avg_response_times_by_url].first[:ave_response_time]
+    User.stats(user)[:sorted_avg_response_times_by_url].first[:ave_response_time]
     assert_equal "http://jumpstartlab.com",
-    user.dashboard(user)[:sorted_avg_response_times_by_url].last[:address]
+    User.stats(user)[:sorted_avg_response_times_by_url].last[:address]
     assert_equal 37.0,
-    user.dashboard(user)[:sorted_avg_response_times_by_url].last[:ave_response_time]
+    User.stats(user)[:sorted_avg_response_times_by_url].last[:ave_response_time]
   end
 
   def test_user_counts_events_by_hour
