@@ -56,7 +56,9 @@ class UserCanSeeDashboardTest < FeatureTest
     click_on("Events")
     click_link("tubbin")
     assert_equal "/sources/clarence/events/tubbin", current_path
-    assert page.has_content?("04:00 AM - 1")
+    assert page.has_content?("4:00 AM")
+    assert page.has_content?("Start of Hour")
+    assert page.has_content?("Requests")
   end
 
   def test_user_sees_an_error_for_an_undefined_event
