@@ -62,5 +62,4 @@ private
     end
     response_times.sort_by{|data| data[:ave_response_time]}.reverse
   end
-
 end

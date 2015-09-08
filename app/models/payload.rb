@@ -18,6 +18,42 @@ class Payload
     end
   end
 
+  def generate_response(raw_payload)
+    payload  = JSON.parse(raw_payload)
+
+    request.user          = @user if @user
+    request.sha           = sha(raw_payload)
+    request.requested_at  = requested_at(payload)
+    request.response_time = response_time(payload)
+
+    if save_payload(payload)
+      @body   = "Success!\n"
+      @status = 200
+    elsif !@user
+      @body   = "This application is not registered to this user.\n"
+      @status = 403
+    else
+      @body   = "This request already exists.\n"
+      @status = 403
+    end
+  end
+
+  def save_payload(payload)
+    if request.save
+      url(payload)
+      browser(payload)
+      operating_system(payload)
+      referral(payload)
+      type(payload)
+      event(payload)
+      browser(payload)
+      resolution(payload)
+      true
+    else
+      false
+    end
+  end
+
   def sha(payload)
     Digest::SHA1.hexdigest(payload)
   end
@@ -67,41 +103,4 @@ class Payload
     event = Event.find_or_create_by(:name => payload["eventName"])
     event.requests << request
   end
-
-  def generate_response(raw_payload)
-    payload  = JSON.parse(raw_payload)
-
-    request.user          = @user if @user
-    request.sha           = sha(raw_payload)
-    request.requested_at  = requested_at(payload)
-    request.response_time = response_time(payload)
-
-    if save_payload(payload)
-      @body   = "Success!\n"
-      @status = 200
-    elsif !@user
-      @body   = "This application is not registered to this user.\n"
-      @status = 403
-    else
-      @body   = "This request already exists.\n"
-      @status = 403
-    end
-  end
-
-  def save_payload(payload)
-    if request.save
-      url(payload)
-      browser(payload)
-      operating_system(payload)
-      referral(payload)
-      type(payload)
-      event(payload)
-      browser(payload)
-      resolution(payload)
-      true
-    else
-      false
-    end
-  end
-
 end
