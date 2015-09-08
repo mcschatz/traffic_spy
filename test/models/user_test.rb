@@ -1,10 +1,14 @@
 require_relative '../test_helper'
 
-class UserTest < Minitest::Test
+class UserTest < ModelTest
+  def setup
+    super
+    create_user
+    create_user_requests
+  end
+
   def test_it_assigns_proper_attributes
-    attributes = {identifier: "jumpstartlab", root_url: "jumpstartlab.com"}
-    user = User.new(attributes)
-    assert_equal "jumpstartlab", user.identifier
-    assert_equal "jumpstartlab.com", user.root_url
+    assert_equal "jumpstartlab", User.first.identifier
+    assert_equal "http://jumpstartlab.com", User.first.root_url
   end
 end
