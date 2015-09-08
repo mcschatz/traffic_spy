@@ -3,13 +3,13 @@ require_relative '../test_helper'
 class UserCanSeeDashboardTest < FeatureTest
   def test_user_can_see_all_registered_sites
     visit '/'
-    assert page.has_content?("clarence")
-    assert page.has_content?("zombo")
+    assert page.has_content?("Clarence")
+    assert page.has_content?("Zombo")
   end
 
   def test_user_can_see_specific_user_details
     visit '/'
-    click_link("clarence")
+    click_link("Clarence")
     assert page.has_content?("http://clarence.ninja/blog")
     assert page.has_content?("Firefox")
     assert page.has_content?("OpenBSD")
@@ -24,7 +24,7 @@ class UserCanSeeDashboardTest < FeatureTest
 
   def test_user_can_see_url_specific_details
     visit '/'
-    click_link("clarence")
+    click_link("Clarence")
     first(:link,"http://clarence.ninja/blog").click
     assert_equal "/sources/clarence/urls/blog", current_path
     assert page.has_content?("37")
@@ -36,7 +36,7 @@ class UserCanSeeDashboardTest < FeatureTest
 
   def test_user_can_see_event_index
     visit '/'
-    click_link("clarence")
+    click_link("Clarence")
     click_on("Events")
     assert_equal "/sources/clarence/events", current_path
     assert page.has_content?("tubbin")
@@ -44,7 +44,7 @@ class UserCanSeeDashboardTest < FeatureTest
 
   def test_user_sees_an_error_if_there_are_no_events
     visit '/'
-    click_link("zombo")
+    click_link("Zombo")
     click_on("Events")
     assert_equal "/sources/zombo/events", current_path
     assert page.has_content?("There are no events for this user")
@@ -52,7 +52,7 @@ class UserCanSeeDashboardTest < FeatureTest
 
   def test_user_can_see_event_specific_details
     visit '/'
-    click_link("clarence")
+    click_link("Clarence")
     click_on("Events")
     click_link("tubbin")
     assert_equal "/sources/clarence/events/tubbin", current_path
