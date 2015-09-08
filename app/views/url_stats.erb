@@ -87,12 +87,22 @@
       </tbody>
     </table>
   </section>
+
   <section class='col-md-6'>
     <h2>HTTP Verbs</h2>
-    <ul>
-    <% @url.types.pluck(:name).uniq.each do |type| %>
-      <li><h3><%= type %></h3></li>
-    <% end %>
-    </ul>
+    <table class='table table-responsive table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Verbs Used</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @url.types.pluck(:name).uniq.each do |type| %>
+        <tr>
+          <td><%= type %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </section>
 </section>
