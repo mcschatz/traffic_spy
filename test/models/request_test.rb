@@ -28,4 +28,12 @@ class RequestTest < Minitest::Test
     assert_equal 11, request.response_time
     assert_equal "12", request.sha
   end
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 end

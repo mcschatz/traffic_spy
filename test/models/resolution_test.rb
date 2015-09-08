@@ -6,4 +6,12 @@ class ResolutionTest < Minitest::Test
     resolution = Resolution.new(attributes)
     assert_equal "1280x720", resolution.description
   end
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 end

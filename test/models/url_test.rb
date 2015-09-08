@@ -6,4 +6,12 @@ class UrlTest < Minitest::Test
     url = Url.new(attributes)
     assert_equal "www.clarence.ninja", url.address
   end
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 end

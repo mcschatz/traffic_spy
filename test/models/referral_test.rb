@@ -6,4 +6,12 @@ class ReferralTest < Minitest::Test
     referral = Referral.new(attributes)
     assert_equal "clarence.ninja", referral.address
   end
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 end

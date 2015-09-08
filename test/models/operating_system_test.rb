@@ -7,4 +7,12 @@ class OperatingSystemTest < Minitest::Test
     os = OperatingSystem.find_or_create_by({:name => os})
     assert_equal "Macintosh%3B Intel Mac OS X 10_8_2", os.name
   end
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 end

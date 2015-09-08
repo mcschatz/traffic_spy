@@ -7,4 +7,12 @@ class BrowserTest < Minitest::Test
     browser = Browser.find_or_create_by({:name => browser})
     assert_equal "Chrome", browser.name
   end
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 end
