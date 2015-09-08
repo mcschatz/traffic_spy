@@ -6,5 +6,4 @@ class DataManipulator
       {description: column, count: count, percent: percent}
     end
   end
-
 end

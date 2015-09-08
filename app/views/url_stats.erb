@@ -1,9 +1,9 @@
-<h1 class='text-center'>=== Stats for '<%= @identifier.capitalize %> -- /<%= @path %>' ===</h1>
+<h1 class='text-center'>Stats for <%= @identifier.capitalize %>/<%= @path %></h1>
 <hr>
 
 <section class='row'>
   <section class='col-md-6'>
-    <h1>Browsers</h1>
+    <h2>Browsers</h2>
     <table class='table table-responsive table-striped table-bordered'>
       <thead>
         <tr>
@@ -18,7 +18,7 @@
     </table>
   </section>
   <section class='col-md-6'>
-    <h1>Response Times</h1>
+    <h2>Response Times</h2>
     <table class='table table-responsive table-striped table-bordered'>
       <tbody>
         <tr>
@@ -40,7 +40,7 @@
 
 <section class='row'>
   <section class='col-md-6'>
-    <h1>Operating Systems</h1>
+    <h2>Operating Systems</h2>
     <table class='table table-responsive table-striped table-bordered'>
       <thead>
         <tr>
@@ -55,7 +55,7 @@
     </table>
   </section>
   <section class='col-md-6'>
-    <h1>Referrals</h1>
+    <h2>Referrals</h2>
     <table class='table table-responsive table-striped table-bordered'>
       <thead>
         <tr>
@@ -73,7 +73,7 @@
 
 <section class='row'>
   <section class='col-md-6'>
-    <h1>Resolutions</h1>
+    <h2>Resolutions</h2>
     <table class='table table-responsive table-striped table-bordered'>
       <thead>
         <tr>
@@ -88,10 +88,10 @@
     </table>
   </section>
   <section class='col-md-6'>
-    <h1>HTTP Verbs</h1>
+    <h2>HTTP Verbs</h2>
     <ul>
     <% @url.types.pluck(:name).uniq.each do |type| %>
-      <li><h2><%= type %></h2></li>
+      <li><h3><%= type %></h3></li>
     <% end %>
     </ul>
   </section>
