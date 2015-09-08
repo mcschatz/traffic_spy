@@ -1,0 +1,5 @@
+<tr>
+  <td><%= "<a href='/sources/#{@user.identifier}/urls#{URI(column_stats_with_link[:description]).path}'>#{column_stats_with_link[:description]}</a>" %></td>
+  <td><%= column_stats_with_link[:count] %></td>
+  <td><%= column_stats_with_link[:percent] %>%</td>
+</tr>
