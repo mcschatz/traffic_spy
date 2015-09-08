@@ -1,27 +1,90 @@
-<h1 class='text-center'>=== <%= @user.identifier %> ===</h1>
+<h1 class='text-center'>=== Aggregate data for '<%= @user.identifier.capitalize %>' ===</h1>
 <hr>
 
 <section class='row'>
   <section class='col-md-6'>
     <h1>URLs</h1>
-    <ol><%= partial :'partials/user_info_with_link', collection: @user_info[:url_info] %></ol>
+    <table class='table table-responsive table-striped table-bordered table-hover'>
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Requests</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+          <%= partial :'partials/user_stats_with_link', collection: @user_stats[:url_info] %>
+      </tbody>
+    </table>
   </section>
 
   <section class='col-md-6'>
     <h1>Response Times</h1>
-    <ol><%= partial :'partials/response_time', collection: @user_info[:sorted_avg_response_times_by_url] %></ol>
+    <table class='table table-responsive table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Response Time</th>
+        </tr>
+      </thead>
+      <tbody>
+          <%= partial :'partials/response_time', collection: @user_stats[:sorted_avg_response_times_by_url] %>
+      </tbody>
+    </table>
   </section>
 </section>
 <hr>
 
 <section class='col-md-6'>
+
   <h1>Browsers</h1>
-  <ol><%= partial :'partials/user_info', collection: @user_info[:browser_info] %></ol>
+  <table class='table table-responsive table-striped table-bordered'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Requests</th>
+        <th>Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= partial :'partials/user_stats', collection: @user_stats[:browser_info] %>
+    </tbody>
+  </table>
+
+  <br>
+
   <h1>Operating Systems</h1>
-  <ol><%= partial :'partials/user_info', collection: @user_info[:os_info] %></ol>
+  <table class='table table-responsive table-striped table-bordered'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Requests</th>
+        <th>Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= partial :'partials/user_stats', collection: @user_stats[:os_info] %>
+    </tbody>
+  </table>
+
+  <br>
+
   <h1>Resolutions</h1>
-  <ol><%= partial :'partials/user_info', collection: @user_info[:resolution_info] %></ol>
+  <table class='table table-responsive table-striped table-bordered'>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Requests</th>
+        <th>Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= partial :'partials/user_stats', collection: @user_stats[:resolution_info] %>
+    </tbody>
+  </table>
+
 </section>
-<section class='col-md-6'>
+
+<section class='col-md-6 text-center'>
   <%="<a href='/sources/#{@user.identifier}/events' class='btn btn-primary'>Events</a>"%>
 </section>

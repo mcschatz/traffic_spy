@@ -14,7 +14,7 @@ class UserCanSeeDashboardTest < FeatureTest
     assert page.has_content?("Firefox")
     assert page.has_content?("OpenBSD")
     assert page.has_content?("1920 x 1280")
-    assert page.has_content?("http://clarence.ninja/blog: 37")
+    assert page.has_content?("37.0 ms")
   end
 
   def test_user_gets_an_error_page_for_invalid_identifier

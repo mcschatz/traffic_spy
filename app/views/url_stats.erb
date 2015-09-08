@@ -1,32 +1,122 @@
-<h1 class='text-center'>=== <%= @identifier %> -- /<%= @path %> ===</h1>
+<h1 class='text-center'>=== URL Stats for '<%= @identifier.capitalize %> -- /<%= @path %>' ===</h1>
 <hr>
 
-Longest Response Time: <%= @url.requests.maximum(:response_time).round(2).to_s + " ms"%><br>
-Shortest Response Time: <%= @url.requests.minimum(:response_time).round(2).to_s + " ms"%><br>
-Average Response Time: <%= @url.requests.average(:response_time).round(2).to_s + " ms"%><br><br>
+<section class='row'>
+  <section class='col-md-6'>
+    <h1>Browsers</h1>
+    <table class='table table-responsive table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Requests</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @url_stats[:browser_info].each do |browser_info| %>
+          <tr>
+            <td><%= browser_info[:description] %></td>
+            <td><%= browser_info[:count] %></td>
+            <td><%= browser_info[:percent] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+  <section class='col-md-6'>
+    <h1>Response Times</h1>
+    <table class='table table-responsive table-striped table-bordered'>
+      <tbody>
+        <tr>
+          <td>Longest Response Time</td>
+          <td><%= @url.requests.maximum(:response_time).round(2).to_s + " ms"%></td>
+        </tr>
+        <tr>
+          <td>Shortest Response Time</td>
+          <td><%= @url.requests.minimum(:response_time).round(2).to_s + " ms"%></td>
+        </tr>
+        <tr>
+          <td>Average Response Time</td>
+          <td><%= @url.requests.average(:response_time).round(2).to_s + " ms"%></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
 
-Most Popular Operating System:
-<ol>
-  <% @url.operating_systems.group(:name).order('count_id DESC').count(:id).each do |os, count| %>
-    <li>
-      <%= "#{os} - #{count}" %>
-    </li>
-  <% end %>
-</ol>
+<section class='row'>
+  <section class='col-md-6'>
+    <h1>Operating Systems</h1>
+    <table class='table table-responsive table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Requests</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @url_stats[:os_info].each do |os_info| %>
+          <tr>
+            <td><%= os_info[:description] %></td>
+            <td><%= os_info[:count] %></td>
+            <td><%= os_info[:percent] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+  <section class='col-md-6'>
+    <h1>Referrals</h1>
+    <table class='table table-responsive table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Requests</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @url_stats[:referral_info].each do |referral_info| %>
+          <tr>
+            <td><%= referral_info[:description] %></td>
+            <td><%= referral_info[:count] %></td>
+            <td><%= referral_info[:percent] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</section>
 
-Most Popular Browser:
-<ol>
-  <% @url.browsers.group(:name).order('count_id DESC').count(:id).each do |browser, count| %>
-    <li>
-      <%= "#{browser} - #{count}" %>
-    </li>
-  <% end %>
-</ol>
-
-HTTP Verbs:
-<ul>
-<% @url.types.pluck(:name).uniq.each do |type| %>
-<li><%= type %></li><%end%>
-</ul>
-
-Most Popular Referrer: <%= @url.referrals.group(:address).order('count_id DESC').limit(1).count(:id).keys.first %><br>
+<section class='row'>
+  <section class='col-md-6'>
+    <h1>Resolutions</h1>
+    <table class='table table-responsive table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Requests</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @url_stats[:resolution_info].each do |resolution_info| %>
+          <tr>
+            <td><%= resolution_info[:description] %></td>
+            <td><%= resolution_info[:count] %></td>
+            <td><%= resolution_info[:percent] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+  <section class='col-md-6'>
+    <h1>HTTP Verbs</h1>
+    <ul>
+    <% @url.types.pluck(:name).uniq.each do |type| %>
+      <li><%= type %></li>
+    <% end %>
+    </ul>
+  </section>
+</section>

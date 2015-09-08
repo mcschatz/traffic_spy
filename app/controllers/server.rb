@@ -34,7 +34,7 @@ module TrafficSpy
       @user = User.find_by_identifier(identifier)
 
       if @user
-        @user_info = User.new.dashboard(@user)
+        @user_stats = User.stats(@user)
         erb :dashboard
       else
         @message = "The requested user, #{identifier.capitalize}, is not registered."
@@ -49,6 +49,7 @@ module TrafficSpy
       if @url
         @identifier = identifier
         @path = path
+        @url_stats = Url.stats(@url)
         erb :url_stats
       else
         @message = "The URL, #{address}, has had zero requests."

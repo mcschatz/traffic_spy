@@ -12,12 +12,12 @@ class User < ActiveRecord::Base
     {:body => body(user), :status => status(user)}
   end
 
-  def dashboard(user)
+  def self.stats(user)
     user_info                                    = {}
-    user_info[:url_info]                         = column_summary(user.urls, :address)
-    user_info[:browser_info]                     = column_summary(user.browsers, :name)
-    user_info[:os_info]                          = column_summary(user.operating_systems, :name)
-    user_info[:resolution_info]                  = column_summary(user.resolutions, :description)
+    user_info[:url_info]                         = DataManipulator.column_summary(user.urls, :address)
+    user_info[:browser_info]                     = DataManipulator.column_summary(user.browsers, :name)
+    user_info[:os_info]                          = DataManipulator.column_summary(user.operating_systems, :name)
+    user_info[:resolution_info]                  = DataManipulator.column_summary(user.resolutions, :description)
     user_info[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url(user)
     user_info
   end
@@ -55,14 +55,7 @@ private
     end
   end
 
-  def column_summary(collection, column)
-    collection.group(column).order('count_id DESC').count(:id).map do |column, count|
-      percent = (count.to_f/collection.count * 100).round(2)
-      {description: column, count: count, percent: percent}
-    end
-  end
-
-  def sorted_avg_response_times_by_url(user)
+  def self.sorted_avg_response_times_by_url(user)
     urls = user.urls.uniq
     response_times = urls.map do |url|
       {:address => url.address, :ave_response_time => url.requests.average(:response_time).to_f.round(2)}
