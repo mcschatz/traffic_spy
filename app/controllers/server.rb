@@ -19,7 +19,7 @@ module TrafficSpy
     post '/sources' do
       user   = User.new({:root_url => params[:rootUrl],
                          :identifier => params[:identifier]})
-      user   = user.response(user)
+      user   = user.response
       status user[:status]
       body   user[:body]
     end
@@ -34,7 +34,7 @@ module TrafficSpy
       @user = User.find_by_identifier(identifier)
 
       if @user
-        @user_stats = User.stats(@user)
+        @user_stats = @user.stats
         erb :dashboard
       else
         @message = "The requested user, #{identifier.capitalize}, is not registered."
@@ -49,7 +49,7 @@ module TrafficSpy
       if @url
         @identifier = identifier
         @path = path
-        @url_stats = Url.stats(@url)
+        @url_stats = @url.stats
         erb :url_stats
       else
         @message = "The URL, #{address}, has had zero requests."
@@ -59,9 +59,10 @@ module TrafficSpy
 
     get '/sources/:identifier/events' do |identifier|
       @user = User.find_by_identifier(identifier)
-      @events = @user.events
+      events = @user.events
 
-      if @events != []
+      if events != []
+        @events_info = DataManipulator.column_summary(events, :name)
         erb :events
       else
         @message = "There are no events for this user."
@@ -71,7 +72,8 @@ module TrafficSpy
 
     get '/sources/:identifier/events/:event_name' do |identifier, event_name|
       user = User.find_by_identifier(identifier)
-      @event = user.event_count_by_hour(user, event_name)
+      @event_name = event_name
+      @event = user.event_count_by_hour(user, @event_name)
 
       if @event.size > 0
         erb :event_details

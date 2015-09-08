@@ -1,4 +1,4 @@
-<h1 class='text-center'>=== Aggregate data for '<%= @user.identifier.capitalize %>' ===</h1>
+<h1 class='text-center'>=== Stats for '<%= @user.identifier.capitalize %>' Traffic ===</h1>
 <hr>
 
 <section class='row'>
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-          <%= partial :'partials/user_stats_with_link', collection: @user_stats[:url_info] %>
+          <%= partial :'partials/column_stats_with_link', collection: @user_stats[:url_info] %>
       </tbody>
     </table>
   </section>
@@ -47,7 +47,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= partial :'partials/user_stats', collection: @user_stats[:browser_info] %>
+      <%= partial :'partials/column_stats', collection: @user_stats[:browser_info] %>
     </tbody>
   </table>
 
@@ -63,7 +63,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= partial :'partials/user_stats', collection: @user_stats[:os_info] %>
+      <%= partial :'partials/column_stats', collection: @user_stats[:os_info] %>
     </tbody>
   </table>
 
@@ -79,7 +79,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= partial :'partials/user_stats', collection: @user_stats[:resolution_info] %>
+      <%= partial :'partials/column_stats', collection: @user_stats[:resolution_info] %>
     </tbody>
   </table>
 

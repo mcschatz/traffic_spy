@@ -1,4 +1,4 @@
-<h1 class='text-center'>=== URL Stats for '<%= @identifier.capitalize %> -- /<%= @path %>' ===</h1>
+<h1 class='text-center'>=== Stats for '<%= @identifier.capitalize %> -- /<%= @path %>' ===</h1>
 <hr>
 
 <section class='row'>
@@ -13,13 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @url_stats[:browser_info].each do |browser_info| %>
-          <tr>
-            <td><%= browser_info[:description] %></td>
-            <td><%= browser_info[:count] %></td>
-            <td><%= browser_info[:percent] %></td>
-          </tr>
-        <% end %>
+        <%= partial :'partials/column_stats', collection: @url_stats[:browser_info] %>
       </tbody>
     </table>
   </section>
@@ -56,13 +50,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @url_stats[:os_info].each do |os_info| %>
-          <tr>
-            <td><%= os_info[:description] %></td>
-            <td><%= os_info[:count] %></td>
-            <td><%= os_info[:percent] %></td>
-          </tr>
-        <% end %>
+        <%= partial :'partials/column_stats', collection: @url_stats[:os_info] %>
       </tbody>
     </table>
   </section>
@@ -77,13 +65,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @url_stats[:referral_info].each do |referral_info| %>
-          <tr>
-            <td><%= referral_info[:description] %></td>
-            <td><%= referral_info[:count] %></td>
-            <td><%= referral_info[:percent] %></td>
-          </tr>
-        <% end %>
+        <%= partial :'partials/column_stats', collection: @url_stats[:referral_info] %>
       </tbody>
     </table>
   </section>
@@ -101,13 +83,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @url_stats[:resolution_info].each do |resolution_info| %>
-          <tr>
-            <td><%= resolution_info[:description] %></td>
-            <td><%= resolution_info[:count] %></td>
-            <td><%= resolution_info[:percent] %></td>
-          </tr>
-        <% end %>
+        <%= partial :'partials/column_stats', collection: @url_stats[:resolution_info] %>
       </tbody>
     </table>
   </section>
@@ -115,7 +91,7 @@
     <h1>HTTP Verbs</h1>
     <ul>
     <% @url.types.pluck(:name).uniq.each do |type| %>
-      <li><%= type %></li>
+      <li><h2><%= type %></h2></li>
     <% end %>
     </ul>
   </section>

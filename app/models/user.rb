@@ -8,17 +8,17 @@ class User < ActiveRecord::Base
   has_many  :resolutions, :through => :requests
   has_many  :events, :through => :requests
 
-  def response(user)
-    {:body => body(user), :status => status(user)}
+  def response
+    {:body => body, :status => status}
   end
 
-  def self.stats(user)
+  def stats
     user_info                                    = {}
-    user_info[:url_info]                         = DataManipulator.column_summary(user.urls, :address)
-    user_info[:browser_info]                     = DataManipulator.column_summary(user.browsers, :name)
-    user_info[:os_info]                          = DataManipulator.column_summary(user.operating_systems, :name)
-    user_info[:resolution_info]                  = DataManipulator.column_summary(user.resolutions, :description)
-    user_info[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url(user)
+    user_info[:url_info]                         = DataManipulator.column_summary(urls, :address)
+    user_info[:browser_info]                     = DataManipulator.column_summary(browsers, :name)
+    user_info[:os_info]                          = DataManipulator.column_summary(operating_systems, :name)
+    user_info[:resolution_info]                  = DataManipulator.column_summary(resolutions, :description)
+    user_info[:sorted_avg_response_times_by_url] = sorted_avg_response_times_by_url
     user_info
   end
 
@@ -37,26 +37,26 @@ class User < ActiveRecord::Base
 
 private
 
-  def body(user)
-    if user.save
-     {:identifier => user.identifier}.to_json
+  def body
+    if save
+     {:identifier => identifier}.to_json
     else
-      user.errors.full_messages
+      errors.full_messages
     end
   end
 
-  def status(user)
-    if user.save
+  def status
+    if save
       200
-    elsif user.identifier == nil || user.root_url == nil
+    elsif identifier == nil || root_url == nil
       400
     else
       403
     end
   end
 
-  def self.sorted_avg_response_times_by_url(user)
-    urls = user.urls.uniq
+  def sorted_avg_response_times_by_url
+    urls = self.urls.uniq
     response_times = urls.map do |url|
       {:address => url.address, :ave_response_time => url.requests.average(:response_time).to_f.round(2)}
     end

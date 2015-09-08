@@ -1,6 +1,15 @@
-<h1 class= "text-center"><%= @user.identifier.capitalize %> Events</h1>
-<ol>
-  <% @events.group(:name).order('count_id DESC').count(:id).each do |event, count| %>
-    <li><%= "<a href='/sources/#{@user.identifier}/events/#{event}'> #{event} </a>- #{count}" %></li>
-  <% end %>
-</ol>
+<h1 class= "text-center">=== Events List for '<%= @user.identifier.capitalize %>'</h1>
+<hr>
+
+<table class='table table-responsive table-striped table-bordered'>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Requests</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= partial :'partials/event_stats_with_link', collection: @events_info %>
+  </tbody>
+</table>
