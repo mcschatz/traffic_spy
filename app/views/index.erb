@@ -12,7 +12,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= "<a href='/sources/#{user.identifier}'>#{user.identifier}</a>" %></td>
+          <td><%= "<a href='/sources/#{user.identifier}'>#{user.identifier.capitalize}</a>" %></td>
         </tr>
       <% end %>
     </tbody>
